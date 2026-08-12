@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; frame-src 'self'; object-src 'none'; base-uri 'self';">
+    <title>404 — Page introuvable | Mouhamadou Halissou</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/webp" href="images/profile-about.webp">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/profile-about.png">
+
+    <!-- PWA & Mobile App Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0f1d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="images/profile-about.webp">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary-color: #00d4ff;
+            --accent-color: #7c3aed;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --gradient-primary: linear-gradient(135deg, #00d4ff, #7c3aed);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-particles {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-family: 'Playfair Display', serif;
+            font-size: 10rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 1rem;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2.2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+
+        @media (max-width: 480px) {
+            .error-code { font-size: 6rem; }
+            h1 { font-size: 1.4rem; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-particles"></div>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-icon">
+            <i class="fas fa-compass"></i>
+        </div>
+        <h1 data-translate="title">Page introuvable</h1>
+        <p data-translate="description">La page que vous cherchez n'existe pas ou a été déplacée. Pas de panique, retournons à l'accueil !</p>
+        <a href="index.html" class="btn">
+            <i class="fas fa-home"></i>
+            <span data-translate="btn">Retour à l'accueil</span>
+        </a>
+    </div>
+
+    <script>
+        // Sync Theme & Language
+        const theme = localStorage.getItem('portfolio-theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+
+        const lang = localStorage.getItem('portfolio-lang') || 'fr';
+        document.documentElement.setAttribute('lang', lang);
+
+        const translations = {
+            fr: {
+                docTitle: "404 — Page introuvable | Mouhamadou Halissou",
+                title: "Page introuvable",
+                description: "La page que vous cherchez n'existe pas ou a été déplacée. Pas de panique, retournons à l'accueil !",
+                btn: "Retour à l'accueil"
+            },
+            en: {
+                docTitle: "404 — Page Not Found | Mouhamadou Halissou",
+                title: "Page Not Found",
+                description: "The page you are looking for does not exist or has been moved. No panic, let's head back home!",
+                btn: "Back to Home"
+            }
+        };
+
+        if (translations[lang]) {
+            document.title = translations[lang].docTitle;
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>

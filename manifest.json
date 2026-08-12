@@ -1,0 +1,23 @@
+{
+  "name": "Mouhamadou Halissou SEIDOU IBRAHIM",
+  "short_name": "Halissou Portfolio",
+  "description": "Expert en Rédaction, Intelligence Artificielle et Gestion de Projet",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#06100e",
+  "theme_color": "#06100e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/profile-about.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/profile-about.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
