@@ -183,6 +183,14 @@ textarea:focus-visible {
     display: none !important;
 }
 
+.brand-icon {
+    width: 1.1em;
+    height: 1.1em;
+    display: inline-block;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
 /* Révélation sobre au scroll */
 .reveal-item {
     opacity: 0;
