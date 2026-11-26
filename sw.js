@@ -1,99 +1,96 @@
-const CACHE_NAME = 'halissou-portfolio-v5';
+const CACHE_NAME = 'halissou-v9';
 const ASSETS = [
   './',
   'index.html',
   'style.css',
   'app.js',
-  'fonts/fonts.css',
   '404.html',
+  '404.js',
   'manifest.json',
-  'images/Halissou.webp',
+  'fonts/fonts.css',
+  'fonts/font_5.woff2',
+  'fonts/font_6.woff2',
+  'fonts/font_37.woff2',
+  'fonts/font_38.woff2',
+  'images/halissou.webp',
+  'images/halissou.png',
+  'images/apple-touch-icon.png',
   'images/profile-hero.webp',
   'images/profile-about.webp',
-  'images/profile-about.png',
   'images/og-image.png',
-  'images/og-image.webp'
+  'images/og-image.webp',
+  'cv_halissou_pro_2026.pdf'
 ];
 
-// Install Event - Robust caching of individual assets
-self.addEventListener('install', (e) => {
-  e.waitUntil(
+self.addEventListener('install', (event) => {
+  event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      // Cache assets individually to prevent the entire service worker installation 
-      // from failing if a single asset (like og-image.png) is missing or renamed.
       return Promise.allSettled(
-        ASSETS.map((asset) => {
-          return cache.add(asset).catch((err) => {
-            console.warn(`[Service Worker] Failed to cache asset: ${asset}`, err);
-          });
-        })
+        ASSETS.map((asset) =>
+          cache.add(asset).catch((err) => {
+            console.warn(`sw: cache miss ${asset}`, err);
+          })
+        )
       );
     }).then(() => self.skipWaiting())
   );
 });
 
-// Activate Event - Clean up stale caches
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log(`[Service Worker] Deleting old cache: ${key}`);
-            return caches.delete(key);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch Event - Safe intercept and network fallback
-self.addEventListener('fetch', (e) => {
-  // Let the browser handle non-HTTP requests and cross-origin requests unless they are from trusted CDNs
-  const isTrustedCDN = e.request.url.includes('cdnjs.cloudflare.com') ||
-                       e.request.url.includes('fonts.googleapis.com') ||
-                       e.request.url.includes('fonts.gstatic.com');
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  if (request.method !== 'GET') return;
 
-  if (!e.request.url.startsWith(self.location.origin) && !isTrustedCDN) {
-    return;
-  }
+  const url = new URL(request.url);
+  const isSameOrigin = url.origin === self.location.origin;
+  const isTrustedCDN = url.hostname === 'cdnjs.cloudflare.com';
+  if (!isSameOrigin && !isTrustedCDN) return;
 
-  // Only handle GET requests to avoid cache.put errors for POST/PUT/DELETE
-  if (e.request.method !== 'GET') {
-    return;
-  }
-
-  e.respondWith(
-    caches.match(e.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(e.request).then((networkResponse) => {
-        const isBasic = networkResponse.type === 'basic';
-        const isCORS = networkResponse.type === 'cors';
-        const isOpaque = networkResponse.type === 'opaque';
-        const isSuccess = networkResponse.status === 200 || (isOpaque && networkResponse.status === 0);
-
-        if (!networkResponse || !isSuccess || (!isBasic && !isCORS && !isOpaque)) {
+  // Network-First pour les navigations HTML afin d'éviter l'affichage d'anciennes versions après déploiement
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.ok && networkResponse.type === 'basic') {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put('index.html', copy)).catch(() => {});
+          }
           return networkResponse;
-        }
-        
-        // Cache new GET requests dynamically
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(e.request, responseToCache).catch((err) => {
-            console.error('[Service Worker] Failed to dynamically cache request:', err);
-          });
-        });
-        
-        return networkResponse;
-      }).catch((err) => {
-        // Fallback for navigation requests when offline
-        if (e.request.mode === 'navigate') {
-          return caches.match('index.html');
-        }
-      });
-    })
+        })
+        .catch(() =>
+          caches.open(CACHE_NAME).then((cache) =>
+            cache.match(request).then((matched) => matched || cache.match('index.html'))
+          )
+        )
+    );
+    return;
+  }
+
+  // Stale-While-Revalidate pour les ressources statiques
+  event.respondWith(
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.match(request).then((cachedResponse) => {
+        const networkPromise = fetch(request)
+          .then((networkResponse) => {
+            const isValid =
+              networkResponse &&
+              (networkResponse.status === 200 || (networkResponse.type === 'opaque' && networkResponse.status === 0));
+            if (isValid && ['basic', 'cors', 'opaque'].includes(networkResponse.type)) {
+              cache.put(request, networkResponse.clone()).catch(() => {});
+            }
+            return networkResponse;
+          })
+          .catch(() => cachedResponse);
+
+        return cachedResponse || networkPromise;
+      })
+    )
   );
 });

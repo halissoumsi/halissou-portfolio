@@ -6,7 +6,13 @@ Desktop.ini
 # Archives
 *.zip
 
+# Netlify / Environment
+.netlify/
+.env
+.env.*
+
 # Node / Temp files
 node_modules/
 *.tmp
 *.log
+*.bak

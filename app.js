@@ -1,1019 +1,1004 @@
-// ===== PORTFOLIO DATA (Bilingual Support) =====
+/* ==========================================================================
+   Portfolio Application — Mouhamadou Halissou SEIDOU IBRAHIM
+   Vanilla JS · i18n FR/EN · WCAG 2.2 AA · Netlify Forms + WhatsApp
+   ========================================================================== */
+
+// Initialisation Plausible Analytics (hors script inline pour CSP stricte)
+window.plausible = window.plausible || function () {
+    (window.plausible.q = window.plausible.q || []).push(arguments);
+};
+if (typeof window.plausible.init === 'function') {
+    window.plausible.init();
+} else {
+    window.plausible.init = function (opts) {
+        window.plausible.o = opts || {};
+    };
+    window.plausible.init();
+}
+
+const CONTACT_EMAIL = 'halissous1491@gmail.com';
+const WHATSAPP_NUMBER = '2290164557673';
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 const portfolioData = {
     profile: {
         name: "Mouhamadou Halissou SEIDOU IBRAHIM",
         roles: {
             fr: [
-                "Expert en Rédaction & IA",
-                "No-Code & Automatisation",
-                "Développeur Python IA & Web IA",
-                "Consultant en Gestion de Projet",
-                "Ghostwriter & Prompt Engineer"
+                "Rédaction stratégique & Ghostwriting",
+                "Automatisation n8n, Make & Notion",
+                "Conformité associative (Loi 2025-19)",
+                "Intégration IA & Développement web",
+                "Coordination & gestion de projet"
             ],
             en: [
-                "Writing & AI Expert",
-                "No-Code & Automation",
-                "Python AI & Web AI Developer",
-                "Project Management Consultant",
-                "Ghostwriter & Prompt Engineer"
+                "Strategic Writing & Ghostwriting",
+                "n8n, Make & Notion Automation",
+                "NGO Statutory Compliance (Law 2025-19)",
+                "AI Integration & Web Development",
+                "Project Coordination & Delivery"
             ]
         }
     },
     skills: [
-        // ── Rédaction ──────────────────────────────────────────────────────
         { name: { fr: "Rédaction professionnelle", en: "Professional Writing" }, level: 95, category: "writing" },
         { name: { fr: "Ghostwriting", en: "Ghostwriting" }, level: 90, category: "writing" },
-        { name: { fr: "SEO & Copywriting IA", en: "SEO & AI Copywriting" }, level: 88, category: "writing" },
+        { name: { fr: "SEO & rédaction web structurée", en: "SEO & Web Copywriting" }, level: 88, category: "writing" },
         { name: { fr: "Rédaction bilingue (Français / Anglais)", en: "Bilingual Writing (French / English)" }, level: 82, category: "writing" },
 
-        // ── Techniques (Dev & IA) ───────────────────────────────────────────
-        { name: { fr: "Intelligence Artificielle (Claude, GPT-4, Gemini)", en: "Artificial Intelligence (Claude, GPT-4, Gemini)" }, level: 93, category: "technical" },
-        { name: { fr: "Prompt Engineering avancé", en: "Advanced Prompt Engineering" }, level: 93, category: "technical" },
+        { name: { fr: "Outils d'IA (Claude, GPT-4, Gemini)", en: "AI Tools (Claude, GPT-4, Gemini)" }, level: 93, category: "technical" },
+        { name: { fr: "Prompt Engineering appliqué", en: "Applied Prompt Engineering" }, level: 93, category: "technical" },
         { name: { fr: "HTML / CSS / JavaScript", en: "HTML / CSS / JavaScript" }, level: 85, category: "technical" },
         { name: { fr: "Génération documentaire (WeasyPrint, python-docx)", en: "Document Generation (WeasyPrint, python-docx)" }, level: 88, category: "technical" },
         { name: { fr: "Microsoft Office & Excel avancé", en: "Microsoft Office & Advanced Excel" }, level: 90, category: "technical" },
-        { name: { fr: "Collecte et analyse des données", en: "Data Collection & Analysis" }, level: 78, category: "technical" },
+        { name: { fr: "Collecte et analyse de données", en: "Data Collection & Analysis" }, level: 78, category: "technical" },
 
-        // ── No-Code & Automation ────────────────────────────────────────────
-        { name: { fr: "n8n (automatisation avancée)", en: "n8n (Advanced Automation)" }, level: 90, category: "nocode" },
-        { name: { fr: "Make.com / Integromat", en: "Make.com / Integromat" }, level: 88, category: "nocode" },
+        { name: { fr: "n8n (workflows & intégrations)", en: "n8n (Workflows & Integrations)" }, level: 90, category: "nocode" },
+        { name: { fr: "Make (ex-Integromat)", en: "Make (formerly Integromat)" }, level: 88, category: "nocode" },
         { name: { fr: "Zapier", en: "Zapier" }, level: 88, category: "nocode" },
-        { name: { fr: "Notion (espace de travail & automatisation)", en: "Notion (Workspace & Automation)" }, level: 92, category: "nocode" },
+        { name: { fr: "Notion (espaces de travail & automatisation)", en: "Notion (Workspaces & Automation)" }, level: 92, category: "nocode" },
 
-        // ── Gestion de projet ───────────────────────────────────────────────
         { name: { fr: "Gestion de projet opérationnel", en: "Operational Project Management" }, level: 90, category: "management" },
-        { name: { fr: "Rédaction & suivi de dossiers institutionnels", en: "Drafting & Follow-up of Institutional Files" }, level: 92, category: "management" },
+        { name: { fr: "Dossiers institutionnels & conformité", en: "Institutional & Compliance Dossiers" }, level: 92, category: "management" },
         { name: { fr: "Planification stratégique & chronogrammes", en: "Strategic Planning & Timelines" }, level: 88, category: "management" },
-        { name: { fr: "Coordination multi-acteurs (ONG, PME, bailleurs)", en: "Multi-stakeholder Coordination (NGO, SME, Donors)" }, level: 86, category: "management" },
+        { name: { fr: "Coordination multi-acteurs (ONG, PME, bailleurs)", en: "Multi-Stakeholder Coordination (NGOs, SMEs, Donors)" }, level: 86, category: "management" },
 
-        // ── Soft Skills ─────────────────────────────────────────────────────
-        { name: { fr: "Communication", en: "Communication" }, level: 92, category: "soft" },
-        { name: { fr: "Organisation", en: "Organization" }, level: 94, category: "soft" },
-        { name: { fr: "Adaptabilité et Créativité", en: "Adaptability & Creativity" }, level: 88, category: "soft" },
-        { name: { fr: "Résolution de problèmes", en: "Problem Solving" }, level: 91, category: "soft" },
-        { name: { fr: "Travail d'équipe & leadership", en: "Teamwork & Leadership" }, level: 91, category: "soft" },
-        { name: { fr: "Pédagogie & formation", en: "Pedagogy & Training" }, level: 87, category: "soft" }
+        { name: { fr: "Communication écrite et orale", en: "Written & Verbal Communication" }, level: 92, category: "soft" },
+        { name: { fr: "Organisation & rigueur documentaire", en: "Organization & Document Rigor" }, level: 94, category: "soft" },
+        { name: { fr: "Adaptabilité & sens éditorial", en: "Adaptability & Editorial Judgment" }, level: 88, category: "soft" },
+        { name: { fr: "Résolution de problèmes opérationnels", en: "Operational Problem Solving" }, level: 91, category: "soft" },
+        { name: { fr: "Travail d'équipe & coordination", en: "Teamwork & Coordination" }, level: 91, category: "soft" },
+        { name: { fr: "Pédagogie & formation", en: "Training & Knowledge Transfer" }, level: 87, category: "soft" }
     ],
     services: [
         {
-            title: { fr: "Rédaction professionnelle", en: "Professional Writing" },
+            title: { fr: "Rédaction professionnelle & SEO", en: "Professional & SEO Writing" },
             icon: "fa-solid fa-feather-pointed",
-            color: "#6C63FF",
             description: {
-                fr: "Création de contenus de qualité : articles, rapports, communications, documentation technique. Adaptation du style selon votre audience et vos objectifs pour un impact maximal.",
-                en: "Creation of quality content: articles, reports, communications, technical documentation. Style adaptation according to your audience and objectives for maximum impact."
+                fr: "Articles de fond, rapports, dossiers institutionnels et documentation technique. Chaque texte est structuré pour votre lectorat, vérifié et optimisé pour le référencement naturel.",
+                en: "Long-form articles, reports, institutional dossiers, and technical documentation. Every piece is structured for clarity, fact-checked, and built for organic search."
             }
         },
         {
             title: { fr: "Ghostwriting", en: "Ghostwriting" },
             icon: "fa-solid fa-user-pen",
-            color: "#00D4FF",
             description: {
-                fr: "Rédaction à votre nom de contenus authentiques et personnalisés. Respect total de votre voix et de votre style pour une cohérence parfaite avec votre image de marque.",
-                en: "Writing in your name of authentic and personalized content. Total respect for your voice and style for perfect consistency with your brand image."
+                fr: "Rédaction sous votre signature de tribunes, prises de parole LinkedIn et documents de référence, dans le respect fidèle de votre voix et de votre ligne éditoriale.",
+                en: "Executive articles, LinkedIn commentary, and reference papers written under your byline while staying faithful to your voice and point of view."
             }
         },
         {
-            title: { fr: "Gestion de projet", en: "Project Management" },
+            title: { fr: "Gestion de projet opérationnel", en: "Operational Project Management" },
             icon: "fa-solid fa-diagram-project",
-            color: "#FF6B6B",
             description: {
-                fr: "Planification, coordination et suivi de vos projets. Gestion des délais, ressources et communications pour assurer le succès de vos initiatives les plus ambitieuses.",
-                en: "Planning, coordination and monitoring of your projects. Management of deadlines, resources and communications to ensure the success of your most ambitious initiatives."
+                fr: "Cadrage, planification, suivi des échéances et coordination des intervenants pour maintenir vos livrables sur les rails du lancement jusqu'à la clôture.",
+                en: "Scoping, scheduling, milestone tracking, and contributor coordination to keep deliverables on time from kickoff to handover."
             }
         },
         {
-            title: { fr: "Accompagnement personnalisé", en: "Personalized Support" },
+            title: { fr: "Accompagnement & conseil sur mesure", en: "Tailored Advisory & Support" },
             icon: "fa-solid fa-handshake",
-            color: "#FFD93D",
             description: {
-                fr: "Support sur-mesure selon vos besoins spécifiques. Conseil, formation et assistance pour optimiser vos processus et atteindre vos objectifs avec efficacité.",
-                en: "Customized support according to your specific needs. Consulting, training and assistance to optimize your processes and reach your goals effectively."
+                fr: "Conseil pratique, formation aux outils et structuration de vos méthodes de travail pour rendre vos équipes autonomes dans la durée.",
+                en: "Hands-on consulting, tool training, and workflow structuring designed to leave your team self-sufficient."
             }
         },
         {
-            title: { fr: "Intégration d'intelligence artificielle", en: "Artificial Intelligence Integration" },
+            title: { fr: "Intégration d'Intelligence Artificielle", en: "Applied AI Integration" },
             icon: "fa-solid fa-microchip",
-            color: "#4ECDC4",
             description: {
-                fr: "Je transforme le potentiel de l'intelligence artificielle en résultats concrets et mesurables pour votre entreprise. Solutions personnalisées basées sur vos besoins réels.",
-                en: "I transform the potential of artificial intelligence into concrete and measurable results for your business. Customized solutions based on your real needs."
+                fr: "Déploiement d'usages concrets autour de Claude, GPT-4 ou Gemini : assistants documentaires, génération automatisée de livrables et guides de prompts adaptés à vos métiers.",
+                en: "Practical workflows powered by Claude, GPT-4, or Gemini: document assistants, automated deliverable drafting, and custom prompt playbooks."
             }
         },
         {
-            title: { fr: "Audit et Analyse des besoins", en: "Audit & Needs Analysis" },
+            title: { fr: "Audit & analyse des processus", en: "Process Audit & Needs Analysis" },
             icon: "fa-solid fa-magnifying-glass-chart",
-            color: "#FF8C42",
             description: {
-                fr: "J'analyse vos objectifs stratégiques, vos défis opérationnels et vos processus actuels pour identifier les opportunités où l'IA peut avoir le plus grand impact.",
-                en: "I analyze your strategic goals, operational challenges and current processes to identify opportunities where AI can make the biggest impact."
+                fr: "Diagnostic de vos flux documentaires et tâches récurrentes afin d'identifier les gains réalistes en automatisation et en organisation avant d'investir.",
+                en: "Diagnostic review of your document workflows and recurring tasks to pinpoint practical automation and process improvements before you invest."
             }
         },
         {
             title: { fr: "Automatisation No-Code & Workflows", en: "No-Code Automation & Workflows" },
             icon: "fa-solid fa-plug",
-            color: "#A855F7",
             description: {
-                fr: "Conception et déploiement de workflows automatisés sans écrire une seule ligne de code : n8n, Make, Zapier, Glide. Relances automatiques, rapports générés à la volée, alertes WhatsApp, CRM simplifié, votre entreprise tourne même quand vous dormez.",
-                en: "Design and deployment of automated workflows without writing a single line of code: n8n, Make, Zapier, Glide. Automated follow-ups, reports generated on the fly, WhatsApp alerts, simplified CRM, your business runs even while you sleep."
+                fr: "Conception de scénarios fiables sous n8n, Make ou Zapier : relances prospects, génération de PDF, alertes WhatsApp et synchronisation CRM/Notion sans ressaisie manuelle.",
+                en: "Reliable workflows in n8n, Make, or Zapier: lead follow-ups, automated PDF generation, WhatsApp alerts, and Notion/CRM sync without manual copy-pasting."
             }
         },
         {
             title: { fr: "Applications No-Code sur mesure", en: "Custom No-Code Applications" },
             icon: "fa-solid fa-mobile-screen",
-            color: "#10B981",
             description: {
-                fr: "Développement d'applications mobiles et web fonctionnelles sans code (Glide, Bubble, FlutterFlow) en 1 à 3 semaines. Gestion de livraisons, tontines numériques, suivi de stock, portails clients — livrées clé en main, modifiables par vous-même.",
-                en: "Development of functional mobile and web applications without code (Glide, Bubble, FlutterFlow) in 1 to 3 weeks. Delivery management, digital tontines, inventory tracking, customer portals — delivered turnkey, modifiable by yourself."
+                fr: "Création d'outils métier web et mobile (Glide, Bubble, FlutterFlow) en 1 à 3 semaines : suivi de livraisons, gestion de stocks, tontines numériques ou portails clients modifiables par vos équipes.",
+                en: "Turnkey web and mobile tools (Glide, Bubble, FlutterFlow) delivered in 1 to 3 weeks: delivery tracking, inventory management, digital tontines, or client portals you can maintain."
             }
         },
         {
-            title: { fr: "Coordination multi-acteurs (ONG, PME, bailleurs)", en: "Multi-stakeholder Coordination (NGO, SME, Donors)" },
+            title: { fr: "Coordination multi-acteurs (ONG, PME, bailleurs)", en: "Multi-Stakeholder Coordination (NGOs, SMEs, Donors)" },
             icon: "fa-solid fa-people-arrows",
-            color: "#F59E0B",
             description: {
-                fr: "Facilitation et coordination entre parties prenantes multiples : ONG, PME, institutions publiques et bailleurs de fonds. Gestion des réunions, suivi des engagements, rédaction de rapports d'avancement et médiation pour garantir l'alignement de tous les actifs vers un objectif commun.",
-                en: "Facilitation and coordination between multiple stakeholders: NGOs, SMEs, public institutions and donors. Management of meetings, tracking of commitments, drafting of progress reports and mediation to guarantee alignment towards a common goal."
+                fr: "Animation des échanges entre ONG, PME, institutions publiques et bailleurs : suivi des engagements, comptes-rendus, rapports d'avancement et alignement de tous les acteurs vers un objectif commun.",
+                en: "Coordination across NGOs, SMEs, public bodies, and donors: meeting facilitation, commitment tracking, progress reports, and alignment around shared milestones."
             }
         },
         {
-            title: { fr: "Développement Web IA", en: "AI Web Development" },
+            title: { fr: "Développement Web & IA", en: "Web & AI Development" },
             icon: "fa-solid fa-code",
-            color: "#3B82F6",
             description: {
-                fr: "Création de sites web professionnels (Python Flask ou HTML/CSS/JS) avec fonctionnalités IA intégrées : chatbot, génération de documents automatique, formulaires intelligents, tableau de bord. Au-delà du site vitrine un outil qui travaille pour vous.",
-                en: "Creation of professional websites (Python Flask or HTML/CSS/JS) with integrated AI features: chatbot, automatic document generation, smart forms, dashboard. Beyond the showcase site, a tool that works for you."
+                fr: "Conception de sites et d'applications web (HTML/CSS/JS ou Python Flask) intégrant formulaires intelligents, tableaux de bord, génération documentaire ou assistants conversationnels.",
+                en: "Custom websites and web apps (HTML/CSS/JS or Python Flask) featuring smart intake forms, dashboards, automated document generation, or conversational assistants."
             }
         }
     ],
     projects: [
         {
             id: "proj-apple-store",
-            category: "technical",
+            category: "webdev",
             icon: "fa-brands fa-apple",
-            color: "#00D4FF",
-            metric: "Déployé & En Ligne",
+            metric: { fr: "Déployé & en ligne", en: "Deployed & Live" },
             title: {
                 fr: "Plateforme Web E-Commerce — Apple Store",
                 en: "E-Commerce Web Platform — Apple Store"
             },
             summary: {
-                fr: "Conception, développement sur-mesure et déploiement d'une plateforme web e-commerce réactive et optimisée.",
-                en: "Custom design, web development, and deployment of a responsive, optimized e-commerce web platform."
+                fr: "Conception, développement front-end sur mesure et mise en ligne d'une boutique web réactive orientée produits haut de gamme.",
+                en: "Custom front-end development and deployment of a responsive e-commerce storefront for premium electronics."
             },
             challenge: {
-                fr: "Développer une interface web fluide, sécurisée et parfaitement optimisée pour présenter des produits haut de gamme avec une UX exemplaire.",
-                en: "Develop a smooth, secure, and optimized web interface to showcase premium products with an outstanding UX."
+                fr: "Proposer une interface claire, rapide et rassurante pour présenter un catalogue produit structuré sur ordinateur comme sur mobile.",
+                en: "Deliver a clean, fast, and reliable interface to browse a structured product catalog across desktop and mobile."
             },
             solution: {
-                fr: "Architecture web moderne, intégration réactive, parcours d'achat simplifié, chargement rapide et déploiement sécurisé en production.",
-                en: "Modern web architecture, responsive layout, streamlined purchase path, fast loading, and secure production deployment."
+                fr: "Intégration web responsive, parcours de consultation simplifié, optimisation du chargement et déploiement en production.",
+                en: "Responsive architecture, streamlined browsing flow, load-time optimization, and production deployment."
             },
             results: {
-                fr: ["Déploiement 100% réussi et opérationnel en ligne", "Expérience utilisateur (UX) fluide et design épuré sur mobile & desktop", "Performances et vitesse de chargement optimisées"],
-                en: ["100% Successful online deployment", "Seamless user experience (UX) & sleek design across all devices", "Optimized performance and lightning-fast load times"]
+                fr: [
+                    "Mise en production complète et stable",
+                    "Navigation fluide sur mobile et ordinateur",
+                    "Temps de chargement optimisés"
+                ],
+                en: [
+                    "Clean production deployment",
+                    "Consistent navigation on mobile and desktop",
+                    "Fast page load performance"
+                ]
             },
-            tools: ["Développement Web", "HTML/CSS/JS", "UX/UI Design", "Déploiement Web"]
+            tools: ["HTML/CSS/JS", "UX/UI", "Responsive", "Déploiement Web"]
         },
         {
             id: "proj-fadama-water",
-            category: "technical",
+            category: "webdev",
             icon: "fa-solid fa-bottle-water",
-            color: "#10B981",
-            metric: "Gestion & Suivi Web",
+            metric: { fr: "Suivi de production", en: "Production Tracking" },
             title: {
-                fr: "FADAMA — Application de Suivi & Gestion de Production d'Eau Minérale",
-                en: "FADAMA — Mineral Water Production Tracking & Management App"
+                fr: "FADAMA — Application de Gestion de Production d'Eau Minérale",
+                en: "FADAMA — Mineral Water Production Tracking App"
             },
             summary: {
-                fr: "Développement web d'une application de suivi, de traçabilité et de gestion globale de la production d'eau minérale FADAMA.",
-                en: "Web development of a dedicated tracking, traceability, and management application for FADAMA mineral water production."
+                fr: "Application web métier dédiée au suivi des volumes de production, à la traçabilité des lots et au pilotage des stocks d'eau minérale.",
+                en: "Web application for tracking mineral water production volumes, batch traceability, and stock levels."
             },
             challenge: {
-                fr: "Digitaliser et centraliser le suivi des volumes de production d'eau minérale, la gestion des stocks et la traçabilité des lots sans perte d'information.",
-                en: "Digitize and centralize mineral water production volumes, inventory tracking, and batch traceability without data loss."
+                fr: "Centraliser le suivi quotidien de la production et des lots pour limiter les écarts d'inventaire et les pertes d'information.",
+                en: "Centralize daily production records and batch logs to reduce inventory discrepancies and data loss."
             },
             solution: {
-                fr: "Conception d'une application web métier ergonomique avec tableau de bord de production en temps réel, gestion des stocks et rapports d'activité.",
-                en: "Designing a user-friendly web app featuring a real-time production dashboard, inventory tracking, and automated reporting."
+                fr: "Tableau de bord web de suivi en temps réel, gestion des entrées/sorties de stock et édition de rapports d'activité.",
+                en: "Real-time production dashboard, stock movement tracking, and structured activity reporting."
             },
             results: {
-                fr: ["Digitalisation à 100% du processus de suivi de production", "Traçabilité des lots et contrôle qualité optimisés en temps réel", "Réduction des écarts d'inventaire et fluidification du pilotage"],
-                en: ["100% Digitized production tracking process", "Real-time batch traceability and quality control optimization", "Reduced inventory discrepancies and streamlined management"]
+                fr: [
+                    "Suivi de production entièrement numérisé",
+                    "Traçabilité des lots facilitée pour le contrôle qualité",
+                    "Réduction des écarts d'inventaire"
+                ],
+                en: [
+                    "Fully digitized production tracking",
+                    "Clear batch traceability for quality control",
+                    "Fewer inventory discrepancies"
+                ]
             },
-            tools: ["Développement Web", "Gestion de Production", "Tableau de Bord", "UX/UI", "Base de Données"]
+            tools: ["Développement Web", "Tableau de bord", "Base de données", "UX/UI"]
         },
         {
             id: "proj-aads-governance",
             category: "compliance",
             icon: "fa-solid fa-scale-balanced",
-            color: "#FF6B6B",
-            metric: "Conformité Statutaire",
+            metric: { fr: "Conformité statutaire", en: "Statutory Compliance" },
             title: {
                 fr: "AADS — Gouvernance Financière & Documents Statutaires",
                 en: "AADS — Financial Governance & Statutory Documents"
             },
             summary: {
-                fr: "Mise en conformité légale, rédaction des statuts et structuration de la gouvernance financière pour une association de développement social.",
-                en: "Legal compliance alignment, drafting of bylaws, and financial governance structuring for a social development association."
+                fr: "Mise en conformité statutaire, rédaction des textes fondateurs et structuration de la gouvernance financière d'une association de développement social.",
+                en: "Statutory alignment, bylaws drafting, and financial governance structuring for a social development association."
             },
             challenge: {
-                fr: "Besoin de structurer le cadre juridique, les statuts administratifs et la gestion financière conformément aux exigences réglementaires associatives.",
-                en: "Need to structure legal framework, administrative bylaws, and financial management in compliance with NGO regulations."
+                fr: "Structurer le cadre juridique, les statuts et les procédures de suivi financier conformément aux exigences réglementaires associatives.",
+                en: "Establish clear legal bylaws and financial oversight procedures aligned with association regulations."
             },
             solution: {
-                fr: "Rédaction et révision des statuts officiels, élaboration du règlement intérieur et mise en place d'outils de suivi financier et comptable.",
-                en: "Drafting official bylaws, establishing internal rules of procedure, and setting up financial and accounting tracking tools."
+                fr: "Rédaction des statuts et du règlement intérieur, complétée par des outils de suivi financier et comptable pour les instances dirigeantes.",
+                en: "Drafted bylaws and internal rules alongside transparent financial tracking templates for governing bodies."
             },
             results: {
-                fr: ["Conformité légale et statutaire intégralement validée", "Mise en place de procédures de gestion financière claires et transparentes", "Cadre de gouvernance structuré pour les assemblées et comités"],
-                en: ["Full legal and statutory compliance validated", "Clear and transparent financial management procedures implemented", "Structured governance framework for general assemblies and committees"]
+                fr: [
+                    "Conformité juridique et statutaire validée",
+                    "Procédures de gestion financière formalisées",
+                    "Cadre clair pour les assemblées et comités"
+                ],
+                en: [
+                    "Legal and statutory compliance validated",
+                    "Documented financial management procedures",
+                    "Clear governance framework for assemblies"
+                ]
             },
-            tools: ["Conformité Légale", "Gouvernance Associative", "Rédaction Statutaire", "Gestion Financière"]
+            tools: ["Conformité légale", "Gouvernance", "Rédaction statutaire", "Suivi financier"]
         },
         {
             id: "proj-ab2s-compliance",
             category: "compliance",
             icon: "fa-solid fa-file-contract",
-            color: "#FF6B6B",
-            metric: "Loi 2025-19 Conforme",
+            metric: { fr: "Loi 2025-19 conforme", en: "Law 2025-19 Compliant" },
             title: {
                 fr: "AB2S — Mise en Conformité Légale (Loi 2025-19)",
                 en: "AB2S — Legal Compliance Alignment (Law 2025-19)"
             },
             summary: {
-                fr: "Mise en conformité statutaire et juridique d'une association de solidarité sociale selon les nouvelles exigences de la Loi 2025-19.",
-                en: "Statutory and legal alignment of a social solidarity association under the new requirements of Law 2025-19."
+                fr: "Refonte statutaire et alignement juridique d'une association de solidarité sociale selon les dispositions de la Loi 2025-19 au Bénin.",
+                en: "Statutory overhaul and legal alignment of a social solidarity association under Benin's Law 2025-19."
             },
             challenge: {
-                fr: "Adapter les statuts administratifs et le fonctionnement interne aux nouvelles obligations légales et réglementaires régissant les associations.",
-                en: "Adapt administrative bylaws and internal governance to new legal obligations governing associations."
+                fr: "Adapter les statuts existants et le fonctionnement interne aux nouvelles obligations réglementaires applicables aux associations.",
+                en: "Bring legacy bylaws and internal rules in line with updated statutory obligations for associations."
             },
             solution: {
-                fr: "Audit juridique des documents existants, refonte des statuts, mise à jour du règlement intérieur et dépôt du dossier officiel de conformité.",
-                en: "Legal audit of existing documents, overhaul of bylaws, internal rules update, and official compliance file filing."
+                fr: "Revue juridique des actes existants, réécriture des statuts, mise à jour du règlement intérieur et constitution du dossier officiel.",
+                en: "Document audit, rewritten bylaws, updated internal regulations, and preparation of the official filing dossier."
             },
             results: {
-                fr: ["Attestation de conformité réglementaire obtenue", "Statuts et règlement intérieur pleinement alignés sur la Loi 2025-19", "Sécurisation juridique des organes dirigeants"],
-                en: ["Regulatory compliance certificate obtained", "Bylaws and internal rules fully aligned with Law 2025-19", "Legal securing of governing bodies"]
+                fr: [
+                    "Attestation de conformité réglementaire obtenue",
+                    "Statuts et règlement intérieur alignés sur la Loi 2025-19",
+                    "Sécurisation juridique des organes dirigeants"
+                ],
+                en: [
+                    "Regulatory compliance certificate obtained",
+                    "Bylaws and internal rules aligned with Law 2025-19",
+                    "Executive governance legally secured"
+                ]
             },
-            tools: ["Loi 2025-19", "Conformité Légale", "Droit Associatif", "Rédaction Juridique"]
+            tools: ["Loi 2025-19", "Conformité légale", "Droit associatif", "Rédaction juridique"]
         },
         {
             id: "proj-elide-ong-compliance",
             category: "compliance",
             icon: "fa-solid fa-hand-holding-heart",
-            color: "#F59E0B",
-            metric: "Conformité ONG Validée",
+            metric: { fr: "Conformité ONG validée", en: "NGO Compliance Approved" },
             title: {
                 fr: "ELiDe — Mise en Conformité ONG (Loi 2025-19)",
                 en: "ELiDe — NGO Legal Compliance (Law 2025-19)"
             },
             summary: {
-                fr: "Accompagnement et mise en conformité juridique globale d'une ONG sous le cadre de la Loi 2025-19.",
-                en: "Comprehensive legal compliance alignment for an NGO under the Law 2025-19 framework."
+                fr: "Accompagnement juridique et montage du dossier d'agrément d'une ONG dans le cadre de la Loi 2025-19.",
+                en: "End-to-end compliance alignment and administrative accreditation dossier for an NGO under Law 2025-19."
             },
             challenge: {
-                fr: "Répondre aux contraintes renforcées de transparence, de gouvernance et de déclaration administrative imposées aux ONG par la Loi 2025-19.",
-                en: "Address heightened requirements for transparency, governance, and administrative reporting imposed on NGOs by Law 2025-19."
+                fr: "Répondre aux exigences renforcées de transparence, de gouvernance et de déclaration administrative imposées aux ONG.",
+                en: "Meet heightened transparency, governance, and reporting obligations required for NGOs."
             },
             solution: {
-                fr: "Revue complète du cadre institutionnel, rédaction des chartes de gouvernance, révision des statuts et montage du dossier administratif d'agrément.",
-                en: "Full review of institutional framework, drafting governance charters, revising bylaws, and assembling administrative accreditation files."
+                fr: "Revue du cadre institutionnel, rédaction des chartes de gouvernance, révision statutaire et constitution complète du dossier administratif.",
+                en: "Institutional review, governance charters, revised bylaws, and complete administrative filing package."
             },
             results: {
-                fr: ["Dossier de mise en conformité validé par les autorités compétentes", "Alignement des procédures administratives et de transparence", "Pérennisation du statut légal de l'ONG"],
-                en: ["Compliance application approved by competent authorities", "Alignment of administrative and transparency procedures", "Long-term legal status secured for the NGO"]
+                fr: [
+                    "Dossier de conformité validé par les autorités compétentes",
+                    "Procédures administratives et de transparence formalisées",
+                    "Statut juridique de l'ONG sécurisé"
+                ],
+                en: [
+                    "Compliance dossier approved by competent authorities",
+                    "Administrative and transparency procedures documented",
+                    "Long-term legal standing secured"
+                ]
             },
-            tools: ["Loi 2025-19", "Conformité ONG", "Droit Institutionnel", "Gouvernance ONG"]
+            tools: ["Loi 2025-19", "Conformité ONG", "Gouvernance", "Dossier administratif"]
         },
         {
             id: "proj-2a2s-compliance",
             category: "compliance",
             icon: "fa-solid fa-gavel",
-            color: "#FF6B6B",
-            metric: "Conformité 2025-19",
+            metric: { fr: "Conformité 2025-19", en: "2025-19 Compliance" },
             title: {
                 fr: "2A2S — Mise en Conformité Statutaire (Loi 2025-19)",
                 en: "2A2S — Statutory Compliance Alignment (Law 2025-19)"
             },
             summary: {
-                fr: "Mise à jour des statuts et alignement juridique des actes administratifs d'une association d'assistance sociale sous la Loi 2025-19.",
-                en: "Bylaw updates and legal alignment of administrative acts for a social assistance association under Law 2025-19."
+                fr: "Actualisation des statuts et alignement des actes administratifs d'une association d'assistance sociale sous la Loi 2025-19.",
+                en: "Bylaw revision and administrative alignment for a social assistance association under Law 2025-19."
             },
             challenge: {
-                fr: "Assurer l'actualisation des textes fondateurs et du registre des délibérations conformément à la réglementation associative en vigueur.",
-                en: "Ensure updating of founding texts and deliberation records in accordance with current association regulations."
+                fr: "Mettre à jour les textes fondateurs et le registre des délibérations conformément au cadre associatif en vigueur.",
+                en: "Update founding documents and assembly records to comply with current association rules."
             },
             solution: {
-                fr: "Audit de conformité des délibérations, révision des statuts administratifs et constitution du registre de conformité statutaire.",
-                en: "Compliance audit of deliberations, administrative bylaws revision, and assembly of statutory compliance records."
+                fr: "Audit des délibérations, révision des statuts administratifs et structuration du registre de conformité statutaire.",
+                en: "Review of assembly minutes, revised administrative bylaws, and organized compliance register."
             },
             results: {
-                fr: ["Validation du dossier administratif de conformité statutaire", "Mise en conformité du registre des assemblées générales", "Sécurisation du fonctionnement des instances associatives"],
-                en: ["Validation of administrative statutory compliance file", "General assembly register brought into full compliance", "Secured operation of association executive bodies"]
+                fr: [
+                    "Dossier administratif de conformité validé",
+                    "Registre des assemblées générales mis à jour",
+                    "Fonctionnement des instances sécurisé"
+                ],
+                en: [
+                    "Statutory compliance file validated",
+                    "General assembly register brought into compliance",
+                    "Governance processes secured"
+                ]
             },
-            tools: ["Loi 2025-19", "Révision Statutaire", "Conformité Associative", "Audit Juridique"]
+            tools: ["Loi 2025-19", "Révision statutaire", "Audit documentaire", "Conformité associative"]
         },
         {
             id: "proj-fovideh-foundation",
             category: "compliance",
             icon: "fa-solid fa-building-ngo",
-            color: "#10B981",
-            metric: "Fondation Conforme",
+            metric: { fr: "Fondation conforme", en: "Foundation Compliant" },
             title: {
                 fr: "FoViDéH — Conformité Légale pour Fondation de Développement",
                 en: "FoViDéH — Legal Compliance for Development Foundation"
             },
             summary: {
-                fr: "Montage des dossiers de conformité légale et structuration administrative pour une fondation axée sur le développement humain.",
-                en: "Assembly of legal compliance documentation and administrative structuring for a human development foundation."
+                fr: "Constitution des dossiers de conformité et structuration administrative pour une fondation dédiée au développement humain.",
+                en: "Legal compliance documentation and administrative structuring for a human development foundation."
             },
             challenge: {
-                fr: "Régulariser et consolider les actes d'existence légale et les conventions de fonctionnement d'une fondation d'utilité sociale.",
-                en: "Regularize and consolidate legal existence acts and operating agreements for a social benefit foundation."
+                fr: "Régulariser et consolider les actes d'existence légale ainsi que les conventions de fonctionnement de la fondation.",
+                en: "Consolidate legal existence acts and operating agreements for a social-benefit foundation."
             },
             solution: {
-                fr: "Rédaction des dossiers juridiques, mise en conformité des chartes institutionnelles et dépôt des documents auprès des autorités compétentes.",
-                en: "Drafting legal documentation, bringing institutional charters into compliance, and filing with competent authorities."
+                fr: "Rédaction des actes juridiques, harmonisation des chartes institutionnelles et suivi du dépôt auprès des autorités.",
+                en: "Drafted legal acts, aligned institutional charters, and supported filing with competent authorities."
             },
             results: {
-                fr: ["Dossier de conformité légale de la fondation validé", "Reconnaissance institutionnelle et sécurisation du statut juridique", "Structure administrative clarifiée pour les partenariats"],
-                en: ["Foundation legal compliance documentation approved", "Institutional recognition and legal status secured", "Administrative structure clarified for external partnerships"]
+                fr: [
+                    "Dossier de conformité légale validé",
+                    "Statut juridique consolidé",
+                    "Cadre administratif clarifié pour les partenariats"
+                ],
+                en: [
+                    "Legal compliance package approved",
+                    "Institutional status consolidated",
+                    "Administrative structure ready for partnerships"
+                ]
             },
-            tools: ["Droit des Fondations", "Conformité Légale", "Développement Humain", "Gouvernance Institutionnelle"]
-        },
-        {
-            id: "proj-ebook-whatsapp-ecommerce",
-            category: "writing",
-            icon: "fa-solid fa-book-open",
-            color: "#10B981",
-            metric: "eBook & Copywriting",
-            title: {
-                fr: "eBook \"Générer 100 000 FCFA par Mois avec son Smartphone\"",
-                en: "eBook \"Generate 100,000 FCFA/Month with your Smartphone\""
-            },
-            summary: {
-                fr: "Conception, rédaction intégrale et mise en page d'un guide pratique et pédagogique axé sur la monétisation et le commerce digital via WhatsApp.",
-                en: "Design, full copywriting, and layout formatting of a practical guide focused on smartphone digital monetization and commerce via WhatsApp."
-            },
-            challenge: {
-                fr: "Structurer un contenu éducatif accessible et captivant expliquant les méthodes concrètes de vente et de gestion commerciale sur smartphone.",
-                en: "Structure accessible, engaging educational content explaining concrete smartphone sales and business management methods."
-            },
-            solution: {
-                fr: "Rédaction persuasive (copywriting), découpage thématique pas à pas, conception d'exercices pratiques et mise en page visuelle attrayante.",
-                en: "Persuasive copywriting, step-by-step thematic structure, practical exercises design, and visually appealing layout formatting."
-            },
-            results: {
-                fr: ["eBook rédigé et mis en page prêt pour la distribution numérique", "Contenu pédagogique structuré facilitant l'apprentissage et le passage à l'action", "Guide adapté aux spécificités du marché mobile"],
-                en: ["eBook written and formatted ready for digital distribution", "Structured educational content facilitating learning and immediate action", "Guide tailored to mobile commerce specifics"]
-            },
-            tools: ["Copywriting", "Rédaction Pédagogique", "Création d'eBook", "E-Commerce WhatsApp", "Mise en Page"]
+            tools: ["Droit des fondations", "Conformité légale", "Gouvernance institutionnelle"]
         },
         {
             id: "proj-koborou-info-media",
             category: "writing",
             icon: "fa-solid fa-newspaper",
-            color: "#3B82F6",
-            metric: "Projet Média & Presse",
+            metric: { fr: "Média multi-supports", en: "Multi-Platform Media" },
             title: {
                 fr: "Koborou Info — Projet Média (Presse Écrite, Web & Audiovisuel)",
-                en: "Koborou Info — Media Project (Print, Web & Audiovisual)"
+                en: "Koborou Info — Media Project (Print, Web & Broadcast)"
             },
             summary: {
-                fr: "Conception éditoriale, rédaction d'articles de presse et déploiement de la ligne de contenus d'un projet média multi-supports.",
-                en: "Editorial design, press article writing, and content strategy deployment for a multi-platform media project."
+                fr: "Structuration de la ligne éditoriale et rédaction d'articles d'actualité pour un média couvrant la presse écrite, le web et l'audiovisuel.",
+                en: "Editorial direction and news writing across print, web, and broadcast channels."
             },
             challenge: {
-                fr: "Structurer une ligne éditoriale cohérente et produire des contenus d'information réactifs et crédibles sur plusieurs canaux (presse écrite, web et audiovisuel).",
-                en: "Structure a consistent editorial strategy and produce responsive, credible news content across multiple channels (print, web, audiovisual)."
+                fr: "Installer une ligne éditoriale cohérente et maintenir une production régulière d'articles fiables sur plusieurs formats.",
+                en: "Maintain a consistent editorial voice and steady publishing cadence across three media formats."
             },
             solution: {
-                fr: "Rédaction d'articles journalistiques, élaboration de la charte éditoriale, création de contenus multimédias et publication web.",
-                en: "Journalistic article writing, editorial charter development, multimedia content creation, and web publishing."
+                fr: "Élaboration de la charte éditoriale, rédaction d'articles journalistiques, scripts courts et publication web.",
+                en: "Built the editorial style guide, wrote news features, broadcast briefs, and web copy."
             },
             results: {
-                fr: ["Couverture médiatique multi-canal opérationnelle", "Production régulière d'articles de presse et de contenus d'actualité", "Ligne éditoriale structurée et crédible"],
-                en: ["Operational multi-channel media coverage", "Regular production of press articles and news content", "Structured and credible editorial strategy"]
+                fr: [
+                    "Couverture éditoriale multi-canal opérationnelle",
+                    "Production régulière d'articles de presse et contenus web",
+                    "Ligne éditoriale homogène et lisible"
+                ],
+                en: [
+                    "Operational multi-channel editorial workflow",
+                    "Consistent publishing cadence across print and web",
+                    "Cohesive editorial voice"
+                ]
             },
-            tools: ["Rédaction Journalistique", "Presse Web", "Ligne Éditoriale", "Production Audiovisuelle", "Médias"]
+            tools: ["Rédaction journalistique", "Charte éditoriale", "Presse web", "Audiovisuel"]
         },
         {
             id: "proj-orientabenin-platform",
             category: "webdev",
             icon: "fa-solid fa-graduation-cap",
-            color: "#10B981",
-            metric: "Plateforme EdTech Web",
+            metric: { fr: "Plateforme EdTech", en: "EdTech Platform" },
             title: {
                 fr: "OrientaBénin — Plateforme d'Orientation Académique",
-                en: "OrientaBénin — Academic Orientation Platform"
+                en: "OrientaBénin — Academic Guidance Platform"
             },
             summary: {
-                fr: "Développement web d'une plateforme d'orientation académique centralisant les filières, universités et opportunités d'études au Bénin.",
-                en: "Web development of an academic orientation platform centralizing majors, universities, and study opportunities in Benin."
+                fr: "Plateforme web centralisant les filières universitaires, établissements et pistes d'orientation pour les étudiants et bacheliers au Bénin.",
+                en: "Web platform organizing degree programs, universities, and study paths for students in Benin."
             },
             challenge: {
-                fr: "Offrir un accès clair, structuré et interactif aux informations d'orientation universitaire et professionnelle pour les étudiants et bacheliers béninois.",
-                en: "Provide clear, structured, and interactive access to university and career guidance information for Beninese students and high school graduates."
+                fr: "Rendre l'information d'orientation universitaire facilement consultable et comparable pour les nouveaux bacheliers.",
+                en: "Make higher-education options searchable and easy to compare for high school graduates."
             },
             solution: {
-                fr: "Conception d'une plateforme web dynamique avec annuaire des filières, moteur de recherche d'établissements et guide d'orientation interactif.",
-                en: "Designing a dynamic web platform with a directory of majors, an institution search engine, and an interactive guidance guide."
+                fr: "Annuaire structuré des filières, recherche d'établissements et parcours guidé d'aide au choix.",
+                en: "Structured program directory, institution search, and step-by-step orientation guide."
             },
             results: {
-                fr: ["Centralisation des filières et établissements d'enseignement supérieur", "Interface web intuitive facilitant la recherche d'orientation", "Outil d'accompagnement accessible aux futurs étudiants"],
-                en: ["Centralization of higher education majors and institutions", "Intuitive web interface facilitating orientation search", "Accessible guidance tool for prospective students"]
+                fr: [
+                    "Centralisation claire des filières et établissements",
+                    "Recherche rapide et accessible sur mobile",
+                    "Outil pratique pour les futurs étudiants et parents"
+                ],
+                en: [
+                    "Centralized catalog of majors and universities",
+                    "Fast, mobile-friendly search",
+                    "Practical guidance tool for prospective students"
+                ]
             },
-            tools: ["Développement Web", "EdTech", "UX/UI Design", "Base de Données", "Orientation Académique"]
+            tools: ["Développement Web", "EdTech", "Base de données", "UX/UI"]
         },
         {
             id: "proj-tontinebj-app",
             category: "webdev",
             icon: "fa-solid fa-piggy-bank",
-            color: "#F59E0B",
-            metric: "FinTech & Web App",
+            metric: { fr: "Application FinTech", en: "FinTech Web App" },
             title: {
                 fr: "TontineBJ — Application de Tontine Digitale",
-                en: "TontineBJ — Digital Tontine Web Application"
+                en: "TontineBJ — Digital Tontine Web App"
             },
             summary: {
-                fr: "Développement web d'une solution de tontine et d'épargne rotative sécurisée adaptée aux usages financiers locaux au Bénin.",
-                en: "Web development of a secure digital tontine and rotating savings application tailored to local Beninese financial habits."
+                fr: "Application web d'épargne rotative conçue pour digitaliser le suivi des cotisations et des tours de table au Bénin.",
+                en: "Web application digitizing rotating savings groups (tontines) with clear contribution tracking."
             },
             challenge: {
-                fr: "Digitaliser et sécuriser le système traditionnel de tontine en offrant une traçabilité transparente des cotisations et des tirages.",
-                en: "Digitize and secure traditional tontine systems by providing transparent payment and payout tracking."
+                fr: "Fiabiliser la gestion des tontines traditionnelles grâce à un suivi transparent des cotisations et échéances.",
+                en: "Bring transparent tracking of member payments and payout cycles to traditional savings groups."
             },
             solution: {
-                fr: "Conception d'une web app intuitive avec gestion des cycles de cotisations, calcul automatisé des tours de table et notifications de rappel.",
-                en: "Designing an intuitive web application managing contribution cycles, automated round calculations, and reminder alerts."
+                fr: "Gestion des cycles de cotisation, calcul automatique des tours de table et rappels d'échéance adaptés au mobile.",
+                en: "Cycle management, automated round tracking, and mobile-friendly payment reminders."
             },
             results: {
-                fr: ["Gestion 100% numérisée des cycles de cotisations et des membres", "Traçabilité des versements et transparence des opérations", "Interface adaptée aux téléphones mobiles"],
-                en: ["100% Digitized management of contribution cycles and members", "Complete payment traceability and transaction transparency", "Mobile-optimized web interface"]
+                fr: [
+                    "Suivi numérisé des membres et des cotisations",
+                    "Transparence accrue sur l'historique des versements",
+                    "Interface pensée pour les écrans de smartphone"
+                ],
+                en: [
+                    "Digitized member and contribution ledger",
+                    "Transparent payment history",
+                    "Mobile-first interface"
+                ]
             },
-            tools: ["Développement Web", "FinTech", "Tontine Digitale", "UX/UI Design", "Base de Données"]
+            tools: ["Développement Web", "FinTech", "Base de données", "Mobile UX"]
         },
         {
             id: "proj-n8n-lead-gen",
             category: "automation",
             icon: "fa-solid fa-paper-plane",
-            color: "#A855F7",
-            metric: "Workflow n8n",
+            metric: { fr: "Workflow n8n", en: "n8n Workflow" },
             title: {
                 fr: "Automatisation de Prospection & Relance Associations",
-                en: "Outreach & Follow-up Automation for Associations"
+                en: "Association Outreach & Follow-Up Automation"
             },
             summary: {
-                fr: "Workflow n8n d'automatisation effectuant la recherche ciblée, la collecte d'emails, l'envoi personnalisé via Gmail et le suivi WhatsApp.",
-                en: "n8n automation workflow handling targeted search, email scraping, personalized Gmail outreach, and WhatsApp follow-up."
+                fr: "Scénario n8n orchestrant la qualification d'associations, l'envoi d'emails personnalisés via Gmail et le suivi de relance WhatsApp.",
+                en: "n8n workflow automating association prospecting, personalized Gmail outreach, and WhatsApp follow-ups."
             },
             challenge: {
-                fr: "Processus manuel et chronophage de recherche d'associations, de collecte de coordonnées et de relance individuelle des partenaires.",
-                en: "Time-consuming manual process of searching for associations, collecting contact details, and follow-ups."
+                fr: "Éliminer la recherche manuelle, la copie de coordonnées et le suivi dispersé des prises de contact associatives.",
+                en: "Eliminate slow manual prospecting, contact copying, and scattered follow-up spreadsheets."
             },
             solution: {
-                fr: "Conception d'un scénario d'automatisation n8n interconnectant la collecte ciblée, l'envoi d'emails personnalisés et les relances WhatsApp.",
-                en: "Designing an n8n automation scenario connecting targeted data collection, personalized email outreach, and WhatsApp alerts."
+                fr: "Workflow n8n reliant collecte ciblée, enrichissement structuré, envoi Gmail contextualisé et alertes de relance WhatsApp.",
+                en: "Automated n8n pipeline connecting targeted collection, structured enrichment, Gmail outreach, and WhatsApp reminders."
             },
             results: {
-                fr: ["Automatisation intégrale du cycle de prospection et de qualification", "Envoi d'emails ciblés et suivi personnalisé sans intervention manuelle", "Gain de temps substantiel sur la gestion des campagnes associatives"],
-                en: ["Full automation of outreach and qualification workflow", "Targeted email dispatch and personalized tracking without manual input", "Substantial time savings on association campaign management"]
+                fr: [
+                    "Cycle de qualification et de prise de contact automatisé",
+                    "Relances personnalisées sans oubli manuel",
+                    "Gain de temps important sur le suivi des campagnes"
+                ],
+                en: [
+                    "Automated outreach and qualification cycle",
+                    "Consistent, personalized follow-ups",
+                    "Significant time saved on campaign administration"
+                ]
             },
-            tools: ["n8n", "Gmail API", "WhatsApp Business", "Automatisations", "Scraping"]
+            tools: ["n8n", "Gmail API", "WhatsApp", "Automatisation"]
         },
         {
             id: "proj-seo-strategy",
             category: "writing",
             icon: "fa-solid fa-feather-pointed",
-            color: "#10B981",
-            metric: "+185% Trafic SEO",
+            metric: { fr: "+185 % trafic SEO", en: "+185% SEO Traffic" },
             title: {
                 fr: "Stratégie de Contenu & Rédaction SEO",
-                en: "SEO Content Strategy & Writing"
+                en: "SEO Content Strategy & Copywriting"
             },
             summary: {
-                fr: "Conception et rédaction d'une stratégie de contenus SEO bilingue (35+ articles de fond & guides de référence).",
-                en: "Design and writing of a bilingual SEO content strategy (35+ deep articles & reference guides)."
+                fr: "Conception éditoriale et rédaction d'un corpus bilingue de plus de 35 articles de fond et guides de référence.",
+                en: "Editorial architecture and writing of 35+ bilingual long-form articles and reference guides."
             },
             challenge: {
-                fr: "Absence de visibilité sur les mots-clés stratégiques et taux de rebond élevé sur les contenus existants.",
-                en: "Lack of organic search visibility on key industry terms and high bounce rate on legacy content."
+                fr: "Faible visibilité sur les requêtes métier stratégiques et taux de rebond élevé sur les pages existantes.",
+                en: "Weak organic visibility on strategic keywords and high bounce rates on legacy pages."
             },
             solution: {
-                fr: "Audit sémantique complet, structuration en cocons sémantiques, génération de plans optimisés et rédaction de haute précision avec relecture humaine rigoureuse.",
-                en: "Comprehensive semantic audit, topical cluster modeling, AI-assisted outline optimization, and high-precision copywriting."
+                fr: "Audit sémantique, structuration en cocons thématiques, préparation assistée par IA et rédaction/relecture humaine complète.",
+                en: "Semantic audit, topical cluster planning, AI-assisted research outlines, and full human writing and editing."
             },
             results: {
-                fr: ["+185% de trafic organique ciblé en 4 mois", "Top 3 Google sur 18 requêtes métiers clés", "Temps moyen passé sur les articles multiplié par 2.4"],
-                en: ["+185% organic traffic within 4 months", "Top 3 Google rankings for 18 strategic terms", "Average time spent per article multiplied by 2.4"]
+                fr: [
+                    "+185 % de trafic organique ciblé en 4 mois",
+                    "Top 3 Google sur 18 requêtes métier clés",
+                    "Temps moyen de lecture multiplié par 2,4"
+                ],
+                en: [
+                    "+185% targeted organic traffic in 4 months",
+                    "Google Top 3 on 18 strategic industry queries",
+                    "2.4x increase in average time on article"
+                ]
             },
-            tools: ["SEO Copywriting", "Keyword Research", "GPT-4", "WordPress", "Analytics"]
+            tools: ["SEO Copywriting", "Recherche sémantique", "GPT-4", "WordPress", "Analytics"]
         },
         {
             id: "proj-n8n-automation",
             category: "automation",
             icon: "fa-solid fa-gears",
-            color: "#A855F7",
-            metric: "25h/sem. économisées",
+            metric: { fr: "25 h / sem. économisées", en: "25 hrs/week Saved" },
             title: {
                 fr: "Automatisation n8n / Notion / WhatsApp",
                 en: "n8n / Notion / WhatsApp Automation"
             },
             summary: {
-                fr: "Automatisation intégrale du flux de relance prospect et de génération instantanée de factures PDF.",
-                en: "End-to-end automation of lead follow-up and instant PDF invoice generation."
+                fr: "Automatisation complète des relances prospects et de la génération de factures et comptes-rendus PDF.",
+                en: "End-to-end automation of prospect follow-ups and instant PDF invoice and report generation."
             },
             challenge: {
-                fr: "Saisie manuelle répétitive des devis et oublis fréquents de relance des prospects par l'équipe commerciale.",
-                en: "Repetitive manual quote generation and frequent missed lead follow-ups by the sales team."
+                fr: "Saisie répétitive des devis et oublis fréquents dans le suivi commercial quotidien.",
+                en: "Manual quote drafting and missed sales follow-ups during busy weeks."
             },
             solution: {
-                fr: "Création d'un workflow n8n connecté à Notion, Stripe et WhatsApp API pour automatiser 100% des notifications et des comptes-rendus PDF.",
-                en: "Building a custom n8n workflow connecting Notion, Stripe, and WhatsApp API to automate 100% of alerts and PDF reports."
+                fr: "Workflow n8n connecté à Notion, Stripe, WeasyPrint et WhatsApp pour déclencher automatiquement notifications et documents PDF.",
+                en: "Custom n8n workflow connecting Notion, Stripe, WeasyPrint, and WhatsApp to automate alerts and PDF outputs."
             },
             results: {
-                fr: ["25h de travail administratif économisées chaque semaine", "Temps de relance prospect réduit de 48h à 2 minutes", "100% de fiabilité sans aucune erreur d'inattention"],
-                en: ["25 hours of admin work saved every week", "Lead response time reduced from 48h to 2 minutes", "100% reliability with zero human errors"]
+                fr: [
+                    "25 heures administratives économisées par semaine",
+                    "Délai de relance prospect ramené de 48 h à 2 minutes",
+                    "Suppression des erreurs de ressaisie"
+                ],
+                en: [
+                    "25 hours of admin work saved per week",
+                    "Lead response time cut from 48 hours to 2 minutes",
+                    "Manual data-entry errors eliminated"
+                ]
             },
-            tools: ["n8n", "Notion API", "WhatsApp Business", "WeasyPrint", "Make"]
+            tools: ["n8n", "Notion API", "WhatsApp", "WeasyPrint", "Make"]
         },
         {
             id: "proj-glide-app",
             category: "webdev",
             icon: "fa-solid fa-mobile-screen-button",
-            color: "#3B82F6",
-            metric: "Livré en 10 jours",
+            metric: { fr: "Livré en 10 jours", en: "Delivered in 10 Days" },
             title: {
                 fr: "Web App No-Code de Suivi de Projets",
-                en: "No-Code Project Tracking Web App"
+                en: "No-Code Field Project Tracking App"
             },
             summary: {
-                fr: "Développement d'une application No-Code pour le suivi en temps réel des chantiers et la validation des jalons.",
-                en: "Development of a No-Code application for real-time site tracking and milestone validation."
+                fr: "Application No-Code PWA permettant le suivi en temps réel des chantiers et la validation des jalons sur le terrain.",
+                en: "Responsive No-Code PWA for real-time site tracking and field milestone sign-off."
             },
             challenge: {
-                fr: "Suivi éparpillé sur Excel sans centralisation ni accès sur le terrain pour les collaborateurs mobiles.",
-                en: "Scattered Excel tracking without central data or mobile field access for remote teams."
+                fr: "Données dispersées dans des fichiers Excel sans accès mobile fiable pour les équipes terrain.",
+                en: "Project status trapped in scattered spreadsheets with no reliable mobile access for field staff."
             },
             solution: {
-                fr: "Conception d'une web app No-Code PWA réactive avec tableau de bord administrateur et portail client sécurisé.",
-                en: "Designing a responsive No-Code PWA with an admin dashboard and secure client portal."
+                fr: "Application Glide connectée à Google Sheets avec tableau de bord administrateur et vue client dédiée.",
+                en: "Glide web app backed by Google Sheets with an admin dashboard and dedicated client portal."
             },
             results: {
-                fr: ["Adoption immédiate par 100% des équipes de terrain", "Réduction de 40% des appels de demandes d'avancement", "Livraison clé en main en 10 jours seulement"],
-                en: ["Immediate 100% adoption across field teams", "40% decrease in status inquiry phone calls", "Turnkey delivery completed in just 10 days"]
+                fr: [
+                    "Adoption immédiate par les équipes terrain",
+                    "Baisse de 40 % des appels de demande d'avancement",
+                    "Livraison opérationnelle en 10 jours"
+                ],
+                en: [
+                    "Full adoption across field teams",
+                    "40% fewer status-check phone calls",
+                    "Delivered in 10 days"
+                ]
             },
-            tools: ["Glide Apps", "Google Sheets API", "UI/UX", "No-Code"]
+            tools: ["Glide", "Google Sheets API", "No-Code", "UX/UI"]
         },
         {
             id: "proj-ai-chatbot",
             category: "webdev",
             icon: "fa-solid fa-robot",
-            color: "#F59E0B",
-            metric: "94% Réponses Exactes",
+            metric: { fr: "94 % réponses exactes", en: "94% Answer Accuracy" },
             title: {
-                fr: "Assistant IA & Chatbot de Base de Connaissances",
-                en: "AI Assistant & Knowledge Base Chatbot"
+                fr: "Assistant IA sur Base Documentaire Interne (RAG)",
+                en: "Internal Knowledge-Base AI Assistant (RAG)"
             },
             summary: {
-                fr: "Intégration d'un assistant virtuel RAG pour interroger instantanément des centaines de documents PDF internes.",
-                en: "Integration of a RAG virtual assistant to instantly query hundreds of internal PDF documents."
+                fr: "Déploiement d'un assistant RAG permettant d'interroger instantanément des centaines de procédures PDF internes.",
+                en: "RAG assistant enabling instant natural-language queries across hundreds of internal PDF procedures."
             },
             challenge: {
-                fr: "Perte de temps importante des équipes à chercher des procédures complexes dans des répertoires désorganisés.",
-                en: "Substantial team time wasted searching for technical procedures across disorganized folders."
+                fr: "Temps perdu par les équipes à retrouver des procédures techniques dans des dossiers volumineux.",
+                en: "Team hours lost hunting for technical procedures across deeply nested folders."
             },
             solution: {
-                fr: "Indexation vectorielle de la documentation et déploiement d'un agent IA conversationnel avec garde-fous de confidentialité.",
-                en: "Vector indexation of company docs and deployment of a conversational AI agent with privacy safeguards."
+                fr: "Indexation vectorielle des documents internes et interface conversationnelle encadrée par des règles strictes de confidentialité.",
+                en: "Vector indexing of company PDFs paired with a guarded conversational interface."
             },
             results: {
-                fr: ["Temps de recherche d'information divisé par 10", "94% de réponses exactes dès la première requête", "Adoption immédiate par l'équipe Support"],
-                en: ["Information lookup time reduced tenfold", "94% accuracy rate on first-try responses", "Immediate adoption by support team"]
+                fr: [
+                    "Temps de recherche documentaire divisé par 10",
+                    "94 % de réponses exactes dès la première requête",
+                    "Adopté quotidiennement par l'équipe support"
+                ],
+                en: [
+                    "10x faster internal document lookup",
+                    "94% first-try response accuracy",
+                    "Adopted daily by the support team"
+                ]
             },
-            tools: ["Python", "OpenAI API", "Prompt Engineering", "Vector DB", "HTML/CSS/JS"]
+            tools: ["Python", "OpenAI API", "Prompt Engineering", "Base vectorielle", "HTML/CSS/JS"]
         },
         {
             id: "proj-ngo-funding",
             category: "compliance",
             icon: "fa-solid fa-list-check",
-            color: "#FF6B6B",
-            metric: "100% Subvention Accordée",
+            metric: { fr: "Subvention 85 000 €", en: "€85,000 Grant Won" },
             title: {
                 fr: "Coordination & Rédaction de Dossier Institutionnel",
-                en: "Institutional Grant Writing & Coordination"
+                en: "Institutional Grant Proposal & Coordination"
             },
             summary: {
-                fr: "Pilotage opérationnel, rédaction du document cadre et coordination multi-acteurs pour la recherche de financements.",
-                en: "Operational management, framework document drafting, and multi-stakeholder proposal coordination."
+                fr: "Pilotage opérationnel, rédaction du document cadre et coordination de 4 organisations partenaires pour une demande de financement.",
+                en: "Operational coordination and framework proposal drafting across 4 partner organizations."
             },
             challenge: {
-                fr: "Synthèse complexe des données de 4 entités partenaires avec un délai de soumission très contraint.",
-                en: "Complex synthesis of data from 4 partner entities with an extremely tight submission window."
+                fr: "Synthétiser les contributions de 4 entités partenaires dans une fenêtre de dépôt très courte.",
+                en: "Synthesize inputs from 4 partner entities under a tight submission deadline."
             },
             solution: {
-                fr: "Mise en place d'un rétro-planning rigoureux, animation des comités de validation et harmonisation de la plume.",
-                en: "Setting up a strict timeline, facilitating review sessions, and unifying writing style across sections."
+                fr: "Rétro-planning strict, animation des comités de validation et harmonisation éditoriale de l'ensemble du dossier.",
+                en: "Structured timeline, review committee facilitation, and unified editorial drafting."
             },
             results: {
-                fr: ["Projet validé et subvention de 85 000 € accordée", "Dossier soumis 48h avant la date limite", "Alignement stratégique parfait des 4 organismes"],
-                en: ["Project approved with €85,000 grant awarded", "Proposal submitted 48 hours ahead of deadline", "Perfect strategic alignment among 4 organizations"]
+                fr: [
+                    "Projet retenu et subvention de 85 000 € accordée",
+                    "Dossier déposé 48 h avant la date limite",
+                    "Alignement complet des 4 organisations partenaires"
+                ],
+                en: [
+                    "Proposal approved with €85,000 grant awarded",
+                    "Submitted 48 hours ahead of deadline",
+                    "Full alignment across all 4 partner organizations"
+                ]
             },
-            tools: ["Gestion de projet", "Rédaction institutionnelle", "Planification", "Leadership"]
-        }
-    ],
-    testimonials: [
-        {
-            name: "B. Lawani",
-            role: { fr: "CEO, Association", en: "CEO, Association" },
-            avatar: "BL",
-            rating: 5,
-            text: {
-                fr: "Halissou a transformé notre stratégie de contenu. Son expertise en rédaction et en IA nous a permis d'augmenter notre engagement de 150% en seulement 3 mois. Un professionnel exceptionnel !",
-                en: "Halissou transformed our content strategy. His expertise in writing and AI allowed us to increase our engagement by 150% in just 3 months. An outstanding professional!"
-            }
-        },
-        {
-            name: "O. O. Barre",
-            role: { fr: "CEO, IMS", en: "CEO, IMS" },
-            avatar: "OBO",
-            rating: 5,
-            text: {
-                fr: "La gestion de notre projet de transformation digitale par Halissou a été impeccable. Sa rigueur, sa créativité et sa maîtrise des outils modernes ont fait toute la différence. Je recommande vivement !",
-                en: "The management of our digital transformation project by Halissou was impeccable. His rigor, creativity and mastery of modern tools made all the difference. I highly recommend!"
-            }
-        },
-        {
-            name: "Marie Paul",
-            role: { fr: "Responsable RH", en: "HR Manager" },
-            avatar: "MP",
-            rating: 5,
-            text: {
-                fr: "L'intégration de solutions IA dans nos processus RH a été un succès total grâce à Halissou. Il a su comprendre nos besoins et livrer des résultats concrets qui ont révolutionné notre façon de travailler.",
-                en: "The integration of AI solutions into our HR processes was a total success thanks to Halissou. He was able to understand our needs and deliver concrete results that revolutionized our way of working."
-            }
-        },
-        {
-            name: "Ahmed Diallo",
-            role: { fr: "Fondateur, HubPlusAfrica", en: "Founder, HubPlusAfrica" },
-            avatar: "AD",
-            rating: 5,
-            text: {
-                fr: "Halissou est un véritable expert polyvalent. Que ce soit pour la rédaction, la gestion de projet ou l'IA, il apporte toujours des solutions innovantes et efficaces. Un partenaire de confiance !",
-                en: "Halissou is a true multi-skilled expert. Whether for writing, project management or AI, he always brings innovative and effective solutions. A partner of trust!"
-            }
+            tools: ["Gestion de projet", "Rédaction institutionnelle", "Planification", "Coordination"]
         }
     ],
     faq: [
         {
             question: {
                 fr: "Quels sont vos délais pour la création de contenus rédigés ?",
-                en: "What are your lead times for written content creation?"
+                en: "What are your turnaround times for written content?"
             },
             answer: {
-                fr: "Les délais varient en fonction de la complexité et de la longueur du projet. En général, un article optimisé SEO ou un document technique prend entre 2 à 5 jours ouvrés. Pour les projets plus urgents, une livraison rapide peut être convenue selon mes disponibilités.",
-                en: "Lead times vary depending on project complexity and length. Generally, an SEO-optimized article or technical document takes 2 to 5 business days. For urgent projects, fast delivery can be agreed based on my availability."
+                fr: "Tout dépend du volume et de la technicité du sujet. Pour un article de fond documenté ou un document technique, comptez entre 2 et 5 jours ouvrés. Si vous avez une échéance serrée, précisez-le dès le brief : selon mon planning, un traitement prioritaire peut être organisé sans compromis sur la relecture.",
+                en: "Turnaround depends on scope and technical depth. A well-researched article or technical document typically takes 2 to 5 business days. If you have an urgent deadline, flag it in your brief—when my schedule allows, we can arrange priority delivery without cutting editorial review."
             }
         },
         {
             question: {
                 fr: "Comment intégrez-vous l'Intelligence Artificielle dans vos projets ?",
-                en: "How do you integrate Artificial Intelligence into your projects?"
+                en: "How do you use Artificial Intelligence in your work?"
             },
             answer: {
-                fr: "L'IA est un assistant puissant. Je l'utilise pour structurer les recherches, générer des plans, automatiser la mise en page ou analyser des données. Cependant, tout le contenu final est entièrement révisé, affiné et réécrit par mes soins pour garantir une voix unique, humaine et authentique.",
-                en: "AI is a powerful assistant. I use it to structure research, generate outlines, automate formatting, or analyze data. However, all final content is fully reviewed, refined, and rewritten by myself to ensure a unique, human, and authentic voice."
+                fr: "L'IA intervient en appui de préparation : structuration de recherches, tri de données brutes ou test d'angles éditoriaux. Chaque livrable est intégralement vérifié, recoupé et rédigé par mes soins avant livraison. L'outil accélère l'analyse ; le fond, la nuance et la responsabilité éditoriale restent humains.",
+                en: "AI supports the prep stage—organizing research, sorting raw data, or stress-testing outlines. Every deliverable is thoroughly fact-checked, edited, and finalized by hand before handover. AI speeds up preparation; judgment, tone, and accountability remain 100% human."
             }
         },
         {
             question: {
                 fr: "En quoi consistent vos automatisations No-Code (n8n, Make) ?",
-                en: "What do your No-Code automations (n8n, Make) consist of?"
+                en: "What do your No-Code automations (n8n, Make) cover?"
             },
             answer: {
-                fr: "L'automatisation No-Code permet de connecter vos outils quotidiens (Notion, Gmail, CRM, WhatsApp) pour supprimer les tâches répétitives. Par exemple : générer automatiquement un rapport PDF dès qu'un formulaire est soumis, envoyer une notification WhatsApp pour chaque prospect, ou synchroniser vos stocks.",
-                en: "No-Code automation allows connecting your daily tools (Notion, Gmail, CRM, WhatsApp) to eliminate repetitive tasks. For example: automatically generating a PDF report when a form is submitted, sending a WhatsApp alert for every lead, or syncing inventory."
+                fr: "L'objectif est de supprimer les ressaisies et copier-coller récurrents. Je relie vos outils existants (Notion, Gmail, CRM, WhatsApp) via n8n ou Make : notification WhatsApp dès qu'un prospect remplit un formulaire, génération automatique d'un récapitulatif PDF ou mise à jour synchronisée de vos suivis.",
+                en: "The goal is to remove repetitive copy-pasting and manual handoffs. I connect the tools you already use (Notion, Gmail, CRM, WhatsApp) with n8n or Make—such as instant WhatsApp alerts for new leads, automated PDF summaries, or synchronized project trackers."
             }
         },
         {
             question: {
                 fr: "Pouvons-nous collaborer à distance ?",
-                en: "Can we collaborate remotely?"
+                en: "Do you work remotely with international clients?"
             },
             answer: {
-                fr: "Absolument. La quasi-totalité de mes collaborations se fait à distance. Nous communiquons via WhatsApp, e-mail, ou planifions des visioconférences sur Google Meet ou Zoom pour faire le point sur l'avancement.",
-                en: "Absolutely. Almost all of my collaborations are done remotely. We communicate via WhatsApp, email, or schedule video calls on Google Meet or Zoom to discuss progress."
+                fr: "Oui, la grande majorité de mes missions s'effectue à distance. Les échanges quotidiens passent par WhatsApp pour la réactivité, les validations par e-mail pour garder une trace claire, et des points vidéo courts sur Google Meet ou Zoom aux étapes clés.",
+                en: "Yes—most of my client engagements are remote. We use WhatsApp for quick day-to-day coordination, email for clear milestone sign-offs, and short Google Meet or Zoom calls whenever a decision calls for live discussion."
             }
         }
     ]
 };
 
-// ===== STATIC TRANSLATIONS =====
 const staticTranslations = {
     fr: {
-        "seo-title": "Mouhamadou Halissou SEIDOU IBRAHIM - Expert en Rédaction, IA & Gestion de Projet",
-        "seo-descr": "Contactez Mouhamadou Halissou SEIDOU IBRAHIM, freelance expert en rédaction web optimisée IA, ghostwriting et gestion de projet à Parakou, Bénin. Transformons vos idées en succès.",
-        "seo-keywords": "rédacteur web bénin, expert IA, freelance gestion de projet, ghostwriter français, consultant SEO parakou, Mouhamadou Halissou",
-        "og-title": "Mouhamadou Halissou SEIDOU IBRAHIM | Rédacteur, IA Master & Gestion de Projet",
-        "og-descr": "Freelancer expert en rédaction web, IA, outils informatique et gestion de projet. Contactez-moi pour vos projets.",
+        "skip-to-content": "Aller au contenu principal",
+        "seo-title": "Mouhamadou Halissou SEIDOU IBRAHIM — Rédaction Stratégique, IA & Gestion de Projet",
+        "seo-descr": "Mouhamadou Halissou SEIDOU IBRAHIM : rédacteur professionnel, consultant en automatisation IA (n8n, Make) et gestion de projet à Parakou, Bénin. Contenus SEO, ghostwriting et conformité ONG (Loi 2025-19).",
+        "og-title": "Mouhamadou Halissou SEIDOU IBRAHIM — Rédaction Stratégique, IA & Gestion de Projet",
+        "og-descr": "Rédacteur professionnel, consultant en automatisation IA (n8n, Make) et coordinateur de projets à Parakou, Bénin. Accompagnement à distance pour dirigeants, PME et ONG.",
         "nav-home": "Accueil",
         "nav-about": "À propos",
         "nav-skills": "Compétences",
         "nav-services": "Services",
         "nav-projects": "Projets",
-        "nav-testimonials": "Témoignages",
         "nav-faq": "FAQ",
-        "nav-estimator": "Estimation",
         "nav-contact": "Contact",
-        "projects-subtitle": "Portfolio",
-        "projects-title": "Mes Réalisations & Études de Cas",
-        "projects-descr": "Découvrez une sélection de projets récents et les résultats mesurables obtenus pour mes clients.",
-        "hero-badge": "Disponible pour de nouveaux projets",
-        "hero-greeting": "Bonjour, je suis",
-        "hero-description": "Je transforme vos idées en réalité grâce à une expertise polyvalente en rédaction professionnelle, intelligence artificielle et gestion de projet. Ensemble, donnons vie à vos ambitions avec créativité, rigueur et innovation.",
-        "stat-projects": "Projets réalisés",
-        "stat-experience": "Années d'expérience",
-        "stat-clients": "Clients satisfaits",
-        "btn-start": "Démarrer un projet",
-        "btn-services": "Découvrir mes services",
-        "hero-follow": "Suivez-moi :",
-        "hero-scroll": "Découvrir",
-        "about-subtitle": "Qui suis-je ?",
-        "about-title": "À propos de moi",
-        "about-descr-sub": "Découvrez mon parcours et ma passion pour l'excellence",
+        "hero-badge": "Disponible pour de nouvelles missions · Parakou & à distance",
+        "hero-greeting": "Mouhamadou Halissou SEIDOU IBRAHIM",
+        "hero-headline": "Rédaction stratégique, automatisation IA & pilotage de projets.",
+        "hero-description": "J'accompagne dirigeants, PME et ONG depuis 7 ans pour produire des contenus éditoriaux rigoureux, structurer leurs dossiers statutaires et automatiser leurs opérations courantes avec n8n, Make et l'IA.",
+        "stat-projects": "Livrables réalisés",
+        "stat-experience": "Années de pratique",
+        "stat-clients": "Organisations accompagnées",
+        "btn-start": "Présenter un projet",
+        "btn-services": "Voir les réalisations",
+        "hero-follow": "Réseaux & contact direct",
+        "about-subtitle": "Profil & Méthode",
+        "about-title": "À propos",
+        "about-descr-sub": "Sept ans d'expérience à la croisée de l'écrit stratégique, de la conformité documentaire et de l'automatisation.",
         "about-exp-label": "Années d'expérience",
-        "about-p1": "Passionné par l'innovation et l'excellence, je mets mon expertise polyvalente au service de vos projets. Fort de 7 années d'expérience et de plus de 369 projets réalisés, j'accompagne entreprises et particuliers dans la concrétisation de leurs ambitions.",
-        "about-p2": "Ma force réside dans ma capacité à allier créativité, rigueur méthodologique et maîtrise des technologies émergentes. Que ce soit pour de la rédaction professionnelle, l'intégration d'intelligence artificielle ou la gestion de projets complexes, je m'engage à livrer des résultats qui dépassent vos attentes.",
-        "highlight-writing-title": "Rédaction d'excellence",
-        "highlight-writing-desc": "Contenus professionnels adaptés à votre audience",
-        "highlight-ia-title": "Expertise IA",
-        "highlight-ia-desc": "Solutions innovantes basées sur l'intelligence artificielle",
-        "highlight-mgmt-title": "Gestion de projet",
-        "highlight-mgmt-desc": "Coordination efficace pour des résultats garantis",
-        "highlight-acc-title": "Accompagnement personnalisé",
-        "highlight-acc-desc": "Support sur-mesure selon vos besoins spécifiques",
-        "btn-chat": "Discutons de votre projet",
-        "btn-cv": "Télécharger mon CV",
-        "skills-subtitle": "Expertise",
-        "skills-title": "Mes Compétences",
-        "skills-descr": "Un ensemble de compétences diversifiées pour répondre à tous vos besoins",
+        "about-role-title": "Rédacteur professionnel · Consultant IA & Gestion de Projet",
+        "about-p1": "Basé à Parakou et habitué aux collaborations à distance depuis 7 ans, j'ai accompagné plus de 60 dirigeants, PME et ONG sur plus de 369 livrables : articles de fond, ghostwriting, dossiers institutionnels et mise en conformité statutaire (Loi 2025-19 au Bénin).",
+        "about-p2": "Ma démarche reste concrète : rédiger des textes clairs qui servent vos objectifs réels, et connecter vos outils du quotidien (n8n, Make, Notion, WhatsApp) pour éliminer les tâches répétitives. Des livrables relus, structurés et directement exploitables.",
+        "highlight-writing-title": "Rédaction & Ghostwriting",
+        "highlight-writing-desc": "Articles SEO, livres blancs, prises de parole et dossiers institutionnels.",
+        "highlight-ia-title": "Automatisation & IA",
+        "highlight-ia-desc": "Workflows n8n/Make et assistants IA branchés sur vos outils métier.",
+        "highlight-mgmt-title": "Conformité & Pilotage",
+        "highlight-mgmt-desc": "Statuts d'ONG (Loi 2025-19), espaces Notion et suivi opérationnel.",
+        "highlight-acc-title": "Collaboration directe",
+        "highlight-acc-desc": "Échanges fluides sur WhatsApp ou Meet et jalons livrés dans les délais.",
+        "btn-chat": "Échanger sur WhatsApp",
+        "btn-cv": "Télécharger le CV (PDF)",
+        "skills-subtitle": "Savoir-faire",
+        "skills-title": "Compétences",
+        "skills-descr": "Une combinaison de compétences éditoriales, techniques et organisationnelles mobilisées selon la nature de chaque mission.",
         "cat-all": "Toutes",
         "cat-writing": "Rédaction",
         "cat-technical": "Techniques",
         "cat-nocode": "No-Code & Automation",
         "cat-management": "Gestion",
-        "cat-soft": "Soft Skills",
-        "services-subtitle": "Ce que je propose",
-        "services-title": "Mes Services",
-        "services-descr": "Des solutions professionnelles adaptées à vos besoins spécifiques",
-        "services-cta-title": "Prêt à démarrer votre projet ?",
-        "services-cta-desc": "Discutons de vos besoins et trouvons ensemble la meilleure solution pour votre réussite.",
-        "services-cta-btn": "Contactez-moi maintenant",
-        "testimonials-subtitle": "Avis clients",
-        "testimonials-title": "Ce que disent mes clients",
-        "testimonials-descr": "La satisfaction de mes clients est ma plus grande récompense",
-        "contact-subtitle": "Parlons de votre projet",
-        "contact-title": "Me Contacter",
-        "contact-descr": "Vous avez un projet en tête ? N'hésitez pas à me contacter",
-        "contact-info-title": "Restons en contact",
-        "contact-info-desc": "Prêt à donner vie à votre projet ? Contactez-moi dès aujourd'hui et discutons de vos besoins. Je suis disponible pour répondre à toutes vos questions.",
+        "cat-soft": "Transversales",
+        "cat-compliance": "Conformité associative",
+        "cat-proj-writing": "Rédaction & Contenu",
+        "cat-automation": "Automatisation n8n",
+        "cat-webdev": "Développement web",
+        "services-subtitle": "Prestations",
+        "services-title": "Domaines d'intervention",
+        "services-descr": "Des prestations cadrées, adaptées aux contraintes des dirigeants, PME, ONG et équipes projet.",
+        "services-cta-title": "Un besoin précis en rédaction, conformité ou automatisation ?",
+        "services-cta-desc": "Partagez le contexte de votre projet pour obtenir une proposition claire, chiffrée et sans engagement.",
+        "services-cta-btn": "Demander un échange",
+        "projects-subtitle": "Études de cas",
+        "projects-title": "Réalisations sélectionnées",
+        "projects-descr": "Dossiers menés en conformité associative, rédaction stratégique, automatisation n8n et développement web.",
+        "faq-subtitle": "Questions pratiques",
+        "faq-title": "Questions fréquentes",
+        "faq-descr": "Délais, usage de l'IA, automatisation No-Code et organisation du travail à distance.",
+        "contact-subtitle": "Prise de contact",
+        "contact-title": "Démarrer une collaboration",
+        "contact-descr": "Décrivez brièvement votre besoin ou réservez un créneau de 15 minutes pour cadrer votre projet.",
+        "contact-info-title": "Coordonnées directes",
+        "contact-info-desc": "Réponse sous 24 heures ouvrées. Vous pouvez envoyer un brief structuré ci-contre, réserver un appel court ou m'écrire directement sur WhatsApp.",
         "contact-label-email": "Email",
         "contact-label-phone": "Téléphone",
         "contact-label-loc": "Localisation",
         "contact-label-avail": "Disponibilité",
         "contact-avail-desc": "7j/7 — Réponse sous 24h",
         "contact-loc-desc": "Parakou, Bénin",
+        "btn-book": "Planifier un appel de 15 min",
         "contact-form-name": "Votre nom *",
         "contact-form-email": "Votre email *",
-        "contact-form-phone": "Téléphone",
-        "contact-form-subject": "Sujet *",
-        "contact-form-msg": "Votre message *",
-        "contact-form-btn": "Envoyer le message",
-        "footer-tagline": "Transformons ensemble vos idées en succès",
-        "footer-nav-title": "Navigation",
-        "footer-services-title": "Services",
-        "footer-contact-title": "Contact",
-        "footer-rights": "Tous droits réservés.",
-        "faq-subtitle": "FAQ",
-        "faq-title": "Questions Fréquentes",
-        "faq-descr": "Trouvez rapidement des réponses aux questions courantes sur mes services et ma méthodologie.",
-        
-        /* New keys */
-        "estimator-subtitle": "Tarification",
-        "estimator-title": "Estimateur de Projet",
-        "estimator-descr": "Simulez le coût et le délai approximatifs de votre projet en quelques clics.",
-        "estimator-service": "Type de service *",
-        "est-label-words": "Volume de rédaction (mots)",
-        "est-opt-seo": "Optimisation SEO avancée (Mots-clés, Meta tags)",
-        "est-label-posts": "Nombre de publications/posts",
-        "est-opt-research": "Recherche approfondie & interviews",
-        "est-label-flows": "Nombre de flux d'automatisation",
-        "est-opt-api": "Intégration d'API tierce complexe",
-        "est-label-screens": "Complexité de l'application",
-        "level-simple": "Simple (Glide)",
-        "level-medium": "Moyenne (Intégrations)",
-        "level-adv": "Avancée (Bubble/Custom)",
-        "est-opt-db": "Synchronisation base de données externe",
-        "est-label-duration": "Durée de l'accompagnement (semaines)",
-        "est-opt-fulltime": "Disponibilité intensive / Réunions hebdo",
-        "est-label-complexity": "Type de développement",
-        "dev-vitrine": "Site Vitrine",
-        "dev-ai": "Site + Chatbot IA",
-        "dev-portal": "Web App Complète",
-        "est-opt-custom": "Entraînement / Fine-tuning de modèle",
-        "est-res-title": "Votre Estimation",
-        "estimator-res-budget": "Budget indicatif :",
-        "estimator-res-time": "Délai estimé :",
-        "est-currency-conversion": "* Conversion indicative en FCFA incluse (Taux fixe 655.95)",
-        "estimator-btn": "Envoyer ce brief sur WhatsApp",
-        "btn-book": "Planifier un appel de 15 min",
-        "booking-modal-title": "Réserver un créneau de discussion",
-        "book-label-date": "Date de l'appel *",
-        "book-select-time": "Heure souhaitée *",
-        "book-submit-btn": "Confirmer et envoyer sur WhatsApp",
-        "book-form-phone": "Téléphone *",
-        "bot-online": "En ligne",
-        "bot-welcome": "Bonjour ! Je suis l'assistant IA de Mouhamadou Halissou. Posez-moi vos questions sur son parcours, ses services de rédaction, d'IA, ou d'automatisation n8n/Make !",
-        "sug-rates": "Quels sont tes tarifs ?",
-        "sug-avail": "Es-tu disponible ?",
-        "sug-ai": "Que fais-tu en IA ?",
-        "sug-n8n": "Parle-moi de n8n",
-        "chatbot-input-placeholder": "Posez une question...",
+        "contact-form-phone": "Téléphone (optionnel)",
+        "contact-form-subject": "Sujet du projet *",
+        "contact-form-msg": "Votre message ou brief *",
         "btn-next": "Suivant",
         "btn-prev": "Précédent",
+        "btn-submit-email": "Envoyer le brief",
+        "btn-submit-wa": "Envoyer sur WhatsApp",
         "form-select-service": "Choisir un service *",
-        "form-select-budget": "Budget estimé *",
         "form-srv-writing": "Rédaction Professionnelle & SEO",
         "form-srv-ghost": "Ghostwriting",
+        "form-srv-compliance": "Conformité Légale & ONG (Loi 2025-19)",
         "form-srv-auto": "Automatisation (n8n, Make)",
         "form-srv-nocode": "Applications No-Code",
-        "form-srv-mgmt": "Gestion de Projet / Consulting",
         "form-srv-dev": "Développement Web IA / Intégration IA",
+        "form-srv-mgmt": "Gestion de Projet / Consulting",
         "form-srv-other": "Autre projet",
-        "budget-1": "< 150 € (100 000 FCFA)",
-        "budget-2": "150 € - 500 € (100 000 - 325 000 FCFA)",
-        "budget-3": "500 € - 1 000 € (325 000 - 650 000 FCFA)",
-        "budget-4": "> 1 000 € (650 000+ FCFA)"
+        "footer-role-desc": "Rédaction stratégique, automatisation IA et gestion de projet",
+        "footer-tagline": "Des écrits clairs et des systèmes fiables, livrés avec rigueur.",
+        "footer-nav-title": "Navigation",
+        "footer-services-title": "Expertises",
+        "footer-contact-title": "Contact",
+        "footer-rights": "Tous droits réservés.",
+        "booking-modal-title": "Planifier un appel de 15 minutes",
+        "book-form-phone": "Téléphone *",
+        "book-label-date": "Date de l'appel *",
+        "book-select-time": "Heure souhaitée *",
+        "book-submit-btn": "Confirmer sur WhatsApp",
+        "bot-online": "Réponse instantanée",
+        "bot-welcome": "Bonjour. Posez-moi une question rapide sur mes tarifs indicatifs, ma disponibilité, la rédaction, la conformité ONG (Loi 2025-19) ou l'automatisation n8n/Make.",
+        "sug-rates": "Tarifs indicatifs",
+        "sug-avail": "Disponibilité",
+        "sug-ai": "Usage de l'IA",
+        "sug-n8n": "Automatisations n8n",
+        "chatbot-input-placeholder": "Posez une question..."
     },
     en: {
-        "seo-title": "Mouhamadou Halissou SEIDOU IBRAHIM - Writing, AI & Project Management Expert",
-        "seo-descr": "Contact Mouhamadou Halissou SEIDOU IBRAHIM, freelance expert in AI-optimized web writing, ghostwriting, and project management in Parakou, Benin. Let's turn your ideas into success.",
-        "seo-keywords": "web writer benin, AI expert, freelance project management, french ghostwriter, SEO consultant parakou, Mouhamadou Halissou",
-        "og-title": "Mouhamadou Halissou SEIDOU IBRAHIM | Writer, AI Master & Project Management",
-        "og-descr": "Freelancer expert in web writing, AI, IT tools and project management. Contact me for your projects.",
+        "skip-to-content": "Skip to main content",
+        "seo-title": "Mouhamadou Halissou SEIDOU IBRAHIM — Strategic Writing, AI & Project Delivery",
+        "seo-descr": "Mouhamadou Halissou SEIDOU IBRAHIM: professional writer, AI & No-Code automation consultant (n8n, Make), and project coordinator based in Parakou, Benin. SEO copywriting, ghostwriting, and NGO compliance.",
+        "og-title": "Mouhamadou Halissou SEIDOU IBRAHIM — Strategic Writing, AI & Project Delivery",
+        "og-descr": "Professional writer, AI automation consultant (n8n, Make), and project coordinator based in Parakou, Benin. Remote support for executives, SMEs, and NGOs.",
         "nav-home": "Home",
         "nav-about": "About",
         "nav-skills": "Skills",
         "nav-services": "Services",
         "nav-projects": "Projects",
-        "nav-testimonials": "Testimonials",
         "nav-faq": "FAQ",
-        "nav-estimator": "Estimations",
         "nav-contact": "Contact",
-        "projects-subtitle": "Portfolio",
-        "projects-title": "My Projects & Case Studies",
-        "projects-descr": "Discover a selection of recent projects and measurable results achieved for clients.",
-        "hero-badge": "Available for new projects",
-        "hero-greeting": "Hello, I am",
-        "hero-description": "I turn your ideas into reality through a versatile expertise in professional writing, artificial intelligence, and project management. Together, let's bring your ambitions to life with creativity, rigor, and innovation.",
-        "stat-projects": "Projects completed",
-        "stat-experience": "Years of experience",
-        "stat-clients": "Satisfied clients",
-        "btn-start": "Start a project",
-        "btn-services": "Discover my services",
-        "hero-follow": "Follow me:",
-        "hero-scroll": "Discover",
-        "about-subtitle": "Who am I?",
-        "about-title": "About me",
-        "about-descr-sub": "Discover my background and my passion for excellence",
+        "hero-badge": "Available for new engagements · Parakou & Remote",
+        "hero-greeting": "Mouhamadou Halissou SEIDOU IBRAHIM",
+        "hero-headline": "Strategic writing, AI automation & project delivery.",
+        "hero-description": "For the past 7 years, I have helped executives, SMEs, and NGOs produce clear editorial content, complete statutory compliance dossiers, and automate recurring operations with n8n, Make, and AI.",
+        "stat-projects": "Deliverables shipped",
+        "stat-experience": "Years of practice",
+        "stat-clients": "Organizations supported",
+        "btn-start": "Start a brief",
+        "btn-services": "View case studies",
+        "hero-follow": "Direct channels",
+        "about-subtitle": "Background & Approach",
+        "about-title": "About",
+        "about-descr-sub": "Seven years working across strategic writing, regulatory documentation, and operational automation.",
         "about-exp-label": "Years of experience",
-        "about-p1": "Passionate about innovation and excellence, I put my versatile expertise at the service of your projects. With 7 years of experience and over 369 completed projects, I support companies and individuals in achieving their goals.",
-        "about-p2": "My strength lies in my ability to combine creativity, methodological rigor, and mastery of emerging technologies. Whether for professional writing, artificial intelligence integration, or managing complex projects, I am committed to delivering results that exceed your expectations.",
-        "highlight-writing-title": "Excellent Writing",
-        "highlight-writing-desc": "Professional content tailored to your audience",
-        "highlight-ia-title": "AI Expertise",
-        "highlight-ia-desc": "Innovative solutions based on artificial intelligence",
-        "highlight-mgmt-title": "Project Management",
-        "highlight-mgmt-desc": "Effective coordination for guaranteed results",
-        "highlight-acc-title": "Personalized Support",
-        "highlight-acc-desc": "Tailored support according to your specific needs",
-        "btn-chat": "Let's discuss your project",
-        "btn-cv": "Download my CV",
-        "skills-subtitle": "Expertise",
-        "skills-title": "My Skills",
-        "skills-descr": "A diverse set of skills to meet all your needs",
+        "about-role-title": "Professional Writer · AI & Project Management Consultant",
+        "about-p1": "Based in Parakou and collaborating remotely for 7 years, I have supported over 60 executives, SMEs, and NGOs across 369+ deliverables: in-depth articles, executive ghostwriting, institutional dossiers, and NGO statutory compliance (Benin Law 2025-19).",
+        "about-p2": "My method stays grounded: clear writing that serves concrete business goals, paired with connected tools (n8n, Make, Notion, WhatsApp) that cut repetitive manual work. Every deliverable is reviewed, structured, and ready for production.",
+        "highlight-writing-title": "Writing & Ghostwriting",
+        "highlight-writing-desc": "SEO articles, white papers, executive commentary, and institutional copy.",
+        "highlight-ia-title": "Automation & AI",
+        "highlight-ia-desc": "n8n/Make workflows and AI assistants wired into your daily stack.",
+        "highlight-mgmt-title": "Compliance & Delivery",
+        "highlight-mgmt-desc": "NGO bylaws (Law 2025-19), Notion workspaces, and milestone tracking.",
+        "highlight-acc-title": "Direct Collaboration",
+        "highlight-acc-desc": "Clear communication on WhatsApp or Meet and dependable delivery timelines.",
+        "btn-chat": "Message on WhatsApp",
+        "btn-cv": "Download CV (PDF)",
+        "skills-subtitle": "Capabilities",
+        "skills-title": "Skills",
+        "skills-descr": "Editorial, technical, and organizational capabilities applied according to each engagement's scope.",
         "cat-all": "All",
         "cat-writing": "Writing",
         "cat-technical": "Technical",
         "cat-nocode": "No-Code & Automation",
         "cat-management": "Management",
-        "cat-soft": "Soft Skills",
-        "services-subtitle": "What I offer",
-        "services-title": "My Services",
-        "services-descr": "Professional solutions tailored to your specific needs",
-        "services-cta-title": "Ready to start your project?",
-        "services-cta-desc": "Let's discuss your needs and find the best solution together for your success.",
-        "services-cta-btn": "Contact me now",
-        "testimonials-subtitle": "Client reviews",
-        "testimonials-title": "What my clients say",
-        "testimonials-descr": "My clients' satisfaction is my greatest reward",
-        "contact-subtitle": "Let's talk about your project",
-        "contact-title": "Contact Me",
-        "contact-descr": "Have a project in mind? Feel free to contact me",
-        "contact-info-title": "Let's stay in touch",
-        "contact-info-desc": "Ready to bring your project to life? Contact me today and let's discuss your needs. I am available to answer all your questions.",
+        "cat-soft": "Core Skills",
+        "cat-compliance": "NGO Compliance",
+        "cat-proj-writing": "Writing & Content",
+        "cat-automation": "n8n Automation",
+        "cat-webdev": "Web Development",
+        "services-subtitle": "Services",
+        "services-title": "Areas of Practice",
+        "services-descr": "Well-scoped services tailored to the real constraints of executives, SMEs, NGOs, and project teams.",
+        "services-cta-title": "Have a specific writing, compliance, or automation project?",
+        "services-cta-desc": "Share your context to receive a clear, scoped proposal with no obligation.",
+        "services-cta-btn": "Request a conversation",
+        "projects-subtitle": "Case Studies",
+        "projects-title": "Selected Work",
+        "projects-descr": "Recent engagements across NGO legal compliance, strategic writing, n8n automation, and web development.",
+        "faq-subtitle": "Practical Details",
+        "faq-title": "Frequently Asked Questions",
+        "faq-descr": "Turnaround times, how AI is used, No-Code workflows, and remote collaboration.",
+        "contact-subtitle": "Get in Touch",
+        "contact-title": "Start a Collaboration",
+        "contact-descr": "Outline your project in the short brief below or book a 15-minute intro call.",
+        "contact-info-title": "Direct Contact",
+        "contact-info-desc": "Replies within 24 business hours. Send a structured brief here, schedule a short call, or reach out directly on WhatsApp.",
         "contact-label-email": "Email",
         "contact-label-phone": "Phone",
         "contact-label-loc": "Location",
         "contact-label-avail": "Availability",
         "contact-avail-desc": "7d/7 — Reply within 24h",
         "contact-loc-desc": "Parakou, Benin",
+        "btn-book": "Schedule a 15-min call",
         "contact-form-name": "Your name *",
         "contact-form-email": "Your email *",
-        "contact-form-phone": "Phone",
-        "contact-form-subject": "Subject *",
-        "contact-form-msg": "Your message *",
-        "contact-form-btn": "Send brief",
-        "footer-tagline": "Let's turn your ideas into success together",
-        "footer-nav-title": "Navigation",
-        "footer-services-title": "Services",
-        "footer-contact-title": "Contact",
-        "footer-rights": "All rights reserved.",
-        "faq-subtitle": "FAQ",
-        "faq-title": "Frequently Asked Questions",
-        "faq-descr": "Quickly find answers to common questions about my services and methodology.",
-        
-        /* New keys */
-        "estimator-subtitle": "Pricing",
-        "estimator-title": "Project Estimator",
-        "estimator-descr": "Simulate the approximate cost and timeline of your project in a few clicks.",
-        "estimator-service": "Service type *",
-        "est-label-words": "Writing volume (words)",
-        "est-opt-seo": "Advanced SEO optimization (Keywords, Meta tags)",
-        "est-label-posts": "Number of publications/posts",
-        "est-opt-research": "In-depth research & interviews",
-        "est-label-flows": "Number of automation flows",
-        "est-opt-api": "Complex API integration",
-        "est-label-screens": "Application complexity",
-        "level-simple": "Simple (Glide)",
-        "level-medium": "Medium (Integrations)",
-        "level-adv": "Advanced (Bubble/Custom)",
-        "est-opt-db": "External database synchronization",
-        "est-label-duration": "Support duration (weeks)",
-        "est-opt-fulltime": "Intensive availability / Weekly syncs",
-        "est-label-complexity": "Development Type",
-        "dev-vitrine": "Showcase Site",
-        "dev-ai": "Site + AI Chatbot",
-        "dev-portal": "Web App / Portal",
-        "est-opt-custom": "AI Model Training / Fine-tuning",
-        "est-res-title": "Your Estimation",
-        "estimator-res-budget": "Estimated Budget:",
-        "estimator-res-time": "Estimated Timeline:",
-        "est-currency-conversion": "* Approximate FCFA conversion included (Rate 655.95)",
-        "estimator-btn": "Send this brief on WhatsApp",
-        "btn-book": "Schedule a 15-min call",
-        "booking-modal-title": "Book a meeting slot",
-        "book-label-date": "Call Date *",
-        "book-select-time": "Desired Time *",
-        "book-submit-btn": "Confirm and send on WhatsApp",
-        "book-form-phone": "Phone *",
-        "bot-online": "Online",
-        "bot-welcome": "Hello! I am Mouhamadou Halissou's AI assistant. Ask me questions about his skills, n8n automation, copy writing, or project management!",
-        "sug-rates": "What are your rates?",
-        "sug-avail": "Are you available?",
-        "sug-ai": "What do you do in AI?",
-        "sug-n8n": "Tell me about n8n",
-        "chatbot-input-placeholder": "Ask a question...",
+        "contact-form-phone": "Phone (optional)",
+        "contact-form-subject": "Project subject *",
+        "contact-form-msg": "Your message or brief *",
         "btn-next": "Next",
         "btn-prev": "Previous",
+        "btn-submit-email": "Send Brief",
+        "btn-submit-wa": "Send via WhatsApp",
         "form-select-service": "Select a service *",
-        "form-select-budget": "Estimated budget *",
         "form-srv-writing": "Professional Writing & SEO",
         "form-srv-ghost": "Ghostwriting",
+        "form-srv-compliance": "Legal & NGO Compliance (Law 2025-19)",
         "form-srv-auto": "Automation (n8n, Make)",
         "form-srv-nocode": "No-Code Applications",
+        "form-srv-dev": "AI Web Development & AI Integration",
         "form-srv-mgmt": "Project Management / Consulting",
-        "form-srv-dev": "AI Web Development & AI",
         "form-srv-other": "Other project",
-        "budget-1": "< 150 € (100,000 FCFA)",
-        "budget-2": "150 € - 500 € (100,000 - 325,000 FCFA)",
-        "budget-3": "500 € - 1,000 € (325,000 - 650,000 FCFA)",
-        "budget-4": "> 1,000 € (650,000+ FCFA)"
+        "footer-role-desc": "Strategic writing, AI automation, and project delivery",
+        "footer-tagline": "Clear writing and dependable systems, delivered with rigor.",
+        "footer-nav-title": "Navigation",
+        "footer-services-title": "Practice Areas",
+        "footer-contact-title": "Contact",
+        "footer-rights": "All rights reserved.",
+        "booking-modal-title": "Schedule a 15-minute call",
+        "book-form-phone": "Phone *",
+        "book-label-date": "Call Date *",
+        "book-select-time": "Preferred Time *",
+        "book-submit-btn": "Confirm on WhatsApp",
+        "bot-online": "Instant reply",
+        "bot-welcome": "Hello. Ask me a quick question about indicative rates, availability, writing, NGO compliance (Law 2025-19), or n8n/Make automation.",
+        "sug-rates": "Indicative rates",
+        "sug-avail": "Availability",
+        "sug-ai": "How AI is used",
+        "sug-n8n": "n8n automation",
+        "chatbot-input-placeholder": "Ask a question..."
     }
-};;
+};
 
-// ===== GLOBAL VARIABLES =====
+// État applicatif
 let isLoaded = false;
-let currentTestimonial = 0;
 let currentLang = 'fr';
-let autoPlayInterval = null;
+let activeSkillCategory = 'all';
+let activeProjectCategory = 'all';
 let typingTimeoutId = null;
+let revealObserver = null;
+let lastFocusedElement = null;
 
-// ===== DOM ELEMENTS =====
 const elements = {
-    loadingScreen: document.getElementById('loading-screen'),
     navbar: document.getElementById('navbar'),
     navToggle: document.getElementById('nav-toggle'),
     navMenu: document.getElementById('nav-menu'),
@@ -1026,29 +1011,16 @@ const elements = {
     langToggle: document.getElementById('lang-toggle')
 };
 
-// ===== INITIALIZATION =====
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Portfolio initialization started...');
-
-    // Register Service Worker for PWA
+// Initialisation immédiate au DOMContentLoaded (sans écran de chargement bloquant)
+document.addEventListener('DOMContentLoaded', () => {
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-            .then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch(function(error) {
-                console.error('Service Worker registration failed:', error);
-            });
+        navigator.serviceWorker.register('sw.js').catch(() => {});
     }
 
-    // Show loading screen
-    showLoadingScreen();
-    
-    // Initialize after loading (reduced to 300ms for a brief animation and faster FCP)
-    setTimeout(() => {
-        hideLoadingScreen();
-        initializeApp();
-    }, 300);
+    const yearEl = document.getElementById('current-year');
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+    initializeApp();
 });
 
 function initializeApp() {
@@ -1059,32 +1031,57 @@ function initializeApp() {
     generateServices();
     generateProjects();
     generateFaq();
-    setupFaqAccordion();
     setupTypingAnimation();
     animateCounters();
-    setupScrollAnimations();
-    setupStaggerAnimations();
-    setupHeroParallax();
+    setupRevealObserver();
+    setupActiveSectionObserver();
     setupBookingModal();
     setupProjectModal();
     checkDeepLinkProject();
     setupIntakeFormWizard();
     setupChatbotAssistant();
     renderBottomNav();
-    setupMagneticButtons();
-    setupSpotlightHover();
-    setupScrollProgressBar();
-    
+    setupScrollEffects();
+
     isLoaded = true;
-    console.log('✅ Portfolio initialization complete!');
 }
 
+/* ==========================================================================
+   Accessibilité : Focus Trap générique pour modales
+   ========================================================================== */
+function getFocusableElements(container) {
+    return Array.from(
+        container.querySelectorAll(
+            'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+    ).filter((el) => el.offsetParent !== null);
+}
+
+function handleModalFocusTrap(e, modalEl) {
+    if (e.key !== 'Tab' || !modalEl.classList.contains('active')) return;
+    const focusables = getFocusableElements(modalEl);
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+    }
+}
+
+/* ==========================================================================
+   Navigation mobile basse (Bottom Nav)
+   ========================================================================== */
 function renderBottomNav() {
     if (document.querySelector('.bottom-nav')) return;
 
     const navContainer = document.createElement('nav');
     navContainer.className = 'bottom-nav';
-    navContainer.setAttribute('aria-label', 'Navigation mobile basse');
+    navContainer.setAttribute('aria-label', 'Navigation mobile rapide');
 
     const items = [
         { id: 'home', translateKey: 'nav-home', icon: 'fa-solid fa-house' },
@@ -1094,68 +1091,56 @@ function renderBottomNav() {
         { id: 'contact', translateKey: 'nav-contact', icon: 'fa-solid fa-envelope' }
     ];
 
-    navContainer.innerHTML = items.map((item, index) => {
-        const isActive = index === 0 ? ' active' : '';
-        const label = (staticTranslations[currentLang] && staticTranslations[currentLang][item.translateKey]) || '';
-        return `
-            <a href="#${item.id}" class="bottom-nav__item nav-link${isActive}" data-translate="${item.translateKey}">
-                <div class="bottom-nav__icon-wrapper">
-                    <i class="${item.icon}"></i>
-                </div>
-                <span class="bottom-nav__label">${label}</span>
-            </a>
-        `;
-    }).join('');
+    navContainer.innerHTML = items
+        .map((item, idx) => {
+            const label = (staticTranslations[currentLang] && staticTranslations[currentLang][item.translateKey]) || '';
+            return `
+                <a href="#${item.id}" class="bottom-nav__item nav-link${idx === 0 ? ' active' : ''}" data-section="${item.id}" data-translate="${item.translateKey}">
+                    <span class="bottom-nav__icon-wrapper" aria-hidden="true"><i class="${item.icon}"></i></span>
+                    <span class="bottom-nav__label">${label}</span>
+                </a>
+            `;
+        })
+        .join('');
 
     document.body.appendChild(navContainer);
 
-    // Re-bind scroll click event for bottom navigation links
-    const newLinks = navContainer.querySelectorAll('.nav-link');
-    newLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+    navContainer.addEventListener('click', (e) => {
+        const link = e.target.closest('.nav-link');
+        if (!link) return;
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
             e.preventDefault();
-            const section = link.getAttribute('href');
-            const targetSection = document.querySelector(section);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-        });
+            target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            setActiveNavLinks(link.getAttribute('data-section'));
+            closeMobileMenu();
+        }
     });
 }
 
-// ===== LOADING SCREEN =====
-function showLoadingScreen() {
-    if (elements.loadingScreen) {
-        elements.loadingScreen.style.display = 'flex';
-    }
+function setActiveNavLinks(sectionId) {
+    if (!sectionId) return;
+    document.querySelectorAll('.nav-link').forEach((link) => {
+        const matches = link.getAttribute('href') === `#${sectionId}`;
+        link.classList.toggle('active', matches);
+    });
 }
 
-function hideLoadingScreen() {
-    if (elements.loadingScreen) {
-        elements.loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            elements.loadingScreen.style.display = 'none';
-        }, 500);
-    }
-}
-
-// ===== LOCALIZATION LOGIC =====
+/* ==========================================================================
+   i18n FR / EN & Synchronisation SEO / JSON-LD
+   ========================================================================== */
 function setupLanguage() {
     const urlParams = new URLSearchParams(window.location.search);
     let lang = urlParams.get('lang');
-    if (!lang || (lang !== 'fr' && lang !== 'en')) {
+    if (lang !== 'fr' && lang !== 'en') {
         lang = localStorage.getItem('portfolio-lang');
     }
-    if (!lang || (lang !== 'fr' && lang !== 'en')) {
-        const browserLang = navigator.language || navigator.userLanguage;
+    if (lang !== 'fr' && lang !== 'en') {
+        const browserLang = (navigator.language || navigator.userLanguage || 'fr').toLowerCase();
         lang = browserLang.startsWith('en') ? 'en' : 'fr';
     }
     setLanguage(lang, false);
 
-    // Handle browser back/forward history navigation
     window.addEventListener('popstate', () => {
         const params = new URLSearchParams(window.location.search);
         const navLang = params.get('lang') === 'en' ? 'en' : 'fr';
@@ -1166,526 +1151,579 @@ function setupLanguage() {
 }
 
 function setLanguage(lang, updateHistory = true) {
-    currentLang = lang;
-    localStorage.setItem('portfolio-lang', lang);
-    document.documentElement.setAttribute('lang', lang);
-    
-    // Update URL cleanly without reloading page
-    const url = new URL(window.location.href);
-    if (lang === 'fr') {
-        url.searchParams.delete('lang');
-    } else {
-        url.searchParams.set('lang', lang);
+    currentLang = lang === 'en' ? 'en' : 'fr';
+    localStorage.setItem('portfolio-lang', currentLang);
+    document.documentElement.setAttribute('lang', currentLang);
+
+    // Mise à jour propre de l'URL (?lang=fr supprimé pour respecter la canonique /)
+    try {
+        const url = new URL(window.location.href);
+        if (currentLang === 'fr') {
+            url.searchParams.delete('lang');
+        } else {
+            url.searchParams.set('lang', 'en');
+        }
+        const query = url.searchParams.toString();
+        const newPath = url.pathname + (query ? `?${query}` : '') + url.hash;
+        if (updateHistory) {
+            window.history.pushState({ lang: currentLang }, '', newPath);
+        } else {
+            window.history.replaceState({ lang: currentLang }, '', newPath);
+        }
+    } catch (_) {
+        // Fallback silencieux sur file://
     }
-    
-    const newPath = url.pathname + (url.searchParams.toString() ? '?' + url.searchParams.toString() : '') + url.hash;
-    if (updateHistory) {
-        window.history.pushState({ lang }, '', newPath);
-    } else {
-        window.history.replaceState({ lang }, '', newPath);
-    }
-    
-    // Update toggle button UI
+
     if (elements.langToggle) {
-        elements.langToggle.querySelector('span').textContent = lang === 'fr' ? 'EN' : 'FR';
+        const span = elements.langToggle.querySelector('span');
+        if (span) span.textContent = currentLang === 'fr' ? 'EN' : 'FR';
     }
-    
-    // Translate static content
-    document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        if (staticTranslations[lang] && staticTranslations[lang][key]) {
-            const translation = staticTranslations[lang][key];
-            
+
+    const dict = staticTranslations[currentLang];
+    if (dict) {
+        document.querySelectorAll('[data-translate]').forEach((el) => {
+            const key = el.getAttribute('data-translate');
+            const translation = dict[key];
+            if (!translation) return;
+
             if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                 el.placeholder = translation;
+            } else if (el.classList.contains('bottom-nav__item')) {
+                const labelEl = el.querySelector('.bottom-nav__label');
+                if (labelEl) labelEl.textContent = translation;
             } else {
-                const icon = el.querySelector('i');
-                const span = el.querySelector('span');
-                
-                if (span) {
-                    span.textContent = translation;
-                } else if (icon) {
-                    const iconHTML = icon.outerHTML;
-                    el.innerHTML = iconHTML + ' ' + translation;
-                } else {
-                    el.textContent = translation;
-                }
+                el.textContent = translation;
             }
-        }
-    });
+        });
 
-    // Sophisticated SEO Dynamic Updates
-    if (staticTranslations[lang]) {
-        // Document Title
-        if (staticTranslations[lang]['seo-title']) {
-            document.title = staticTranslations[lang]['seo-title'];
-        }
-        
-        // Meta description
-        const metaDescr = document.querySelector('meta[name="description"]');
-        if (metaDescr && staticTranslations[lang]['seo-descr']) {
-            metaDescr.setAttribute('content', staticTranslations[lang]['seo-descr']);
-        }
-        
-        // Meta keywords
-        const metaKeywords = document.querySelector('meta[name="keywords"]');
-        if (metaKeywords && staticTranslations[lang]['seo-keywords']) {
-            metaKeywords.setAttribute('content', staticTranslations[lang]['seo-keywords']);
-        }
-        
-        // Canonical Link
-        const canonicalLink = document.querySelector('link[rel="canonical"]');
-        if (canonicalLink) {
-            canonicalLink.setAttribute('href', lang === 'fr' ? 'https://www.halissoumsi.com/' : 'https://www.halissoumsi.com/?lang=en');
-        }
-        
-        // Open Graph
-        const ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle && staticTranslations[lang]['og-title']) {
-            ogTitle.setAttribute('content', staticTranslations[lang]['og-title']);
-        }
-        const ogDescr = document.querySelector('meta[property="og:description"]');
-        if (ogDescr && staticTranslations[lang]['og-descr']) {
-            ogDescr.setAttribute('content', staticTranslations[lang]['og-descr']);
-        }
-        const ogUrl = document.querySelector('meta[property="og:url"]');
-        if (ogUrl) {
-            ogUrl.setAttribute('content', lang === 'fr' ? 'https://www.halissoumsi.com/' : 'https://www.halissoumsi.com/?lang=en');
-        }
-        const ogLocale = document.querySelector('meta[property="og:locale"]');
-        if (ogLocale) {
-            ogLocale.setAttribute('content', lang === 'fr' ? 'fr_FR' : 'en_US');
-        }
-        
-        // Twitter
-        const twTitle = document.querySelector('meta[name="twitter:title"]');
-        if (twTitle && staticTranslations[lang]['og-title']) {
-            twTitle.setAttribute('content', staticTranslations[lang]['og-title']);
-        }
-        const twDescr = document.querySelector('meta[name="twitter:description"]');
-        if (twDescr && staticTranslations[lang]['og-descr']) {
-            twDescr.setAttribute('content', staticTranslations[lang]['og-descr']);
-        }
-        const twUrl = document.querySelector('meta[name="twitter:url"]');
-        if (twUrl) {
-            twUrl.setAttribute('content', lang === 'fr' ? 'https://www.halissoumsi.com/' : 'https://www.halissoumsi.com/?lang=en');
-        }
-        
-        // Update Schema JSON-LD Structured Data
-        const schemaScript = document.getElementById('schema-ld');
-        if (schemaScript) {
-            const knowsAboutList = lang === 'fr' 
-                ? ["Rédaction web", "Intelligence Artificielle", "Gestion de projet", "Ghostwriting", "SEO", "Automatisation", "No-Code"]
-                : ["Web Writing", "Artificial Intelligence", "Project Management", "Ghostwriting", "SEO", "Automation", "No-Code"];
-            
-            const serviceName = lang === 'fr'
-                ? "Mouhamadou Halissou SEIDOU IBRAHIM - Services Freelance"
-                : "Mouhamadou Halissou SEIDOU IBRAHIM - Freelance Services";
-                
-            const schemaData = {
-                "@context": "https://schema.org",
-                "@graph": [
-                    {
-                        "@type": "Person",
-                        "@id": "https://www.halissoumsi.com/#person",
-                        "name": "Mouhamadou Halissou SEIDOU IBRAHIM",
-                        "url": lang === 'fr' ? "https://www.halissoumsi.com/" : "https://www.halissoumsi.com/?lang=en",
-                        "image": "https://www.halissoumsi.com/images/profile-hero.webp",
-                        "sameAs": [
-                            "https://x.com/HalissouMSI",
-                            "https://instagram.com/halissoumsi",
-                            "https://wa.me/22967576050"
-                        ],
-                        "jobTitle": staticTranslations[lang]['seo-title'].split(' - ')[1],
-                        "knowsAbout": knowsAboutList,
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Parakou",
-                            "addressCountry": "BJ"
-                        },
-                        "email": "mailto:halissous1491@gmail.com",
-                        "telephone": "+229-67-57-60-50"
-                    },
-                    {
-                        "@type": "WebSite",
-                        "@id": "https://www.halissoumsi.com/#website",
-                        "url": lang === 'fr' ? "https://www.halissoumsi.com/" : "https://www.halissoumsi.com/?lang=en",
-                        "name": "Mouhamadou Halissou SEIDOU IBRAHIM - Portfolio",
-                        "publisher": {
-                            "@id": "https://www.halissoumsi.com/#person"
-                        },
-                        "inLanguage": lang === 'fr' ? "fr-FR" : "en-US"
-                    },
-                    {
-                        "@type": "WebPage",
-                        "@id": "https://www.halissoumsi.com/#webpage",
-                        "url": lang === 'fr' ? "https://www.halissoumsi.com/" : "https://www.halissoumsi.com/?lang=en",
-                        "name": staticTranslations[lang]['seo-title'],
-                        "isPartOf": {
-                            "@id": "https://www.halissoumsi.com/#website"
-                        },
-                        "about": {
-                            "@id": "https://www.halissoumsi.com/#person"
-                        },
-                        "description": staticTranslations[lang]['seo-descr'],
-                        "inLanguage": lang === 'fr' ? "fr-FR" : "en-US"
-                    },
-                    {
-                        "@type": "ProfessionalService",
-                        "@id": "https://www.halissoumsi.com/#service",
-                        "name": serviceName,
-                        "image": "https://www.halissoumsi.com/images/profile-hero.webp",
-                        "priceRange": "$$",
-                        "telephone": "+229-67-57-60-50",
-                        "address": {
-                            "@type": "PostalAddress",
-                            "addressLocality": "Parakou",
-                            "addressCountry": "BJ"
-                        },
-                        "url": lang === 'fr' ? "https://www.halissoumsi.com/" : "https://www.halissoumsi.com/?lang=en",
-                        "provider": {
-                            "@id": "https://www.halissoumsi.com/#person"
-                        }
-                    }
-                ]
-            };
-            schemaScript.textContent = JSON.stringify(schemaData, null, 2);
-        }
+        updateSeoMetadata(currentLang, dict);
     }
-    
-    // Regenerate sections if app is loaded
+
     if (isLoaded) {
         generateSkills();
         generateServices();
         generateProjects();
         generateFaq();
-        setupFaqAccordion();
         setupTypingAnimation();
+        observeRevealItems();
     }
 }
 
-// ===== EVENT LISTENERS =====
-function setupEventListeners() {
-    // Navigation toggle
-    if (elements.navToggle) {
-        elements.navToggle.addEventListener('click', toggleNav);
+function updateSeoMetadata(lang, dict) {
+    const canonicalUrl = lang === 'fr' ? 'https://www.halissoumsi.com/' : 'https://www.halissoumsi.com/?lang=en';
+
+    if (dict['seo-title']) document.title = dict['seo-title'];
+
+    const setMeta = (selector, value) => {
+        const el = document.querySelector(selector);
+        if (el && value) el.setAttribute('content', value);
+    };
+
+    setMeta('meta[name="description"]', dict['seo-descr']);
+    setMeta('meta[property="og:title"]', dict['og-title']);
+    setMeta('meta[property="og:description"]', dict['og-descr']);
+    setMeta('meta[property="og:url"]', canonicalUrl);
+    setMeta('meta[property="og:locale"]', lang === 'fr' ? 'fr_FR' : 'en_US');
+    setMeta('meta[property="og:locale:alternate"]', lang === 'fr' ? 'en_US' : 'fr_FR');
+    setMeta('meta[name="twitter:title"]', dict['og-title']);
+    setMeta('meta[name="twitter:description"]', dict['og-descr']);
+
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) canonicalLink.setAttribute('href', canonicalUrl);
+
+    // Mise à jour unifiée du @graph JSON-LD (incluant FAQPage aligné sur le contenu affiché)
+    const schemaScript = document.getElementById('schema-ld');
+    if (schemaScript) {
+        const isFr = lang === 'fr';
+        const schemaData = {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Person",
+                    "@id": "https://www.halissoumsi.com/#person",
+                    "name": portfolioData.profile.name,
+                    "url": canonicalUrl,
+                    "image": "https://www.halissoumsi.com/images/profile-hero.webp",
+                    "sameAs": [
+                        "https://github.com/halissoumsi",
+                        "https://x.com/HalissouMSI",
+                        "https://instagram.com/halissoumsi",
+                        `https://wa.me/${WHATSAPP_NUMBER}`
+                    ],
+                    "jobTitle": isFr
+                        ? "Rédacteur professionnel, consultant IA et coordinateur de projets"
+                        : "Professional writer, AI consultant, and project coordinator",
+                    "knowsAbout": isFr
+                        ? ["Rédaction web", "Ghostwriting", "SEO", "Intelligence Artificielle", "Automatisation n8n et Make", "Conformité associative Loi 2025-19", "Gestion de projet"]
+                        : ["Web Writing", "Ghostwriting", "SEO", "Artificial Intelligence", "n8n and Make Automation", "NGO Legal Compliance Law 2025-19", "Project Management"],
+                    "address": { "@type": "PostalAddress", "addressLocality": "Parakou", "addressCountry": "BJ" },
+                    "email": `mailto:${CONTACT_EMAIL}`,
+                    "telephone": "+229-01-64-55-76-73"
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://www.halissoumsi.com/#website",
+                    "url": canonicalUrl,
+                    "name": "Mouhamadou Halissou SEIDOU IBRAHIM — Portfolio",
+                    "publisher": { "@id": "https://www.halissoumsi.com/#person" },
+                    "inLanguage": isFr ? "fr-FR" : "en-US"
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://www.halissoumsi.com/#webpage",
+                    "url": canonicalUrl,
+                    "name": dict['seo-title'],
+                    "isPartOf": { "@id": "https://www.halissoumsi.com/#website" },
+                    "about": { "@id": "https://www.halissoumsi.com/#person" },
+                    "description": dict['seo-descr'],
+                    "inLanguage": isFr ? "fr-FR" : "en-US"
+                },
+                {
+                    "@type": "ProfessionalService",
+                    "@id": "https://www.halissoumsi.com/#service",
+                    "name": isFr
+                        ? "Mouhamadou Halissou SEIDOU IBRAHIM — Services Freelance"
+                        : "Mouhamadou Halissou SEIDOU IBRAHIM — Freelance Services",
+                    "url": canonicalUrl,
+                    "image": "https://www.halissoumsi.com/images/profile-hero.webp",
+                    "telephone": "+229-01-64-55-76-73",
+                    "priceRange": "$$",
+                    "provider": { "@id": "https://www.halissoumsi.com/#person" },
+                    "address": { "@type": "PostalAddress", "addressLocality": "Parakou", "addressCountry": "BJ" },
+                    "hasOfferCatalog": {
+                        "@type": "OfferCatalog",
+                        "name": isFr ? "Catalogue des prestations freelance" : "Freelance Services Catalog",
+                        "itemListElement": portfolioData.services.slice(0, 5).map((s) => ({
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": s.title[lang],
+                                "description": s.description[lang]
+                            }
+                        }))
+                    }
+                },
+                {
+                    "@type": "FAQPage",
+                    "@id": "https://www.halissoumsi.com/#faq",
+                    "mainEntity": portfolioData.faq.map((item) => ({
+                        "@type": "Question",
+                        "name": item.question[lang],
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": item.answer[lang]
+                        }
+                    }))
+                }
+            ]
+        };
+        schemaScript.textContent = JSON.stringify(schemaData, null, 2);
     }
-    
-    // Language toggle
+}
+
+/* ==========================================================================
+   Navigation, Filtres & Scroll (sans layout thrashing)
+   ========================================================================== */
+function closeMobileMenu() {
+    if (elements.navMenu) elements.navMenu.classList.remove('active');
+    if (elements.navToggle) elements.navToggle.setAttribute('aria-expanded', 'false');
+}
+
+function setupEventListeners() {
+    if (elements.navToggle) {
+        elements.navToggle.addEventListener('click', () => {
+            if (!elements.navMenu) return;
+            const isOpen = elements.navMenu.classList.toggle('active');
+            elements.navToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+    }
+
     if (elements.langToggle) {
         elements.langToggle.addEventListener('click', () => {
-            const nextLang = currentLang === 'fr' ? 'en' : 'fr';
-            setLanguage(nextLang);
+            setLanguage(currentLang === 'fr' ? 'en' : 'fr', true);
         });
     }
-    
-    // Navigation links
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const section = link.getAttribute('href');
-            document.querySelector(section).scrollIntoView({ behavior: 'smooth' });
-            
-            // Update active link
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-            
-            // Close mobile menu
-            if (elements.navMenu) {
-                elements.navMenu.classList.remove('active');
+
+    if (elements.navMenu) {
+        elements.navMenu.addEventListener('click', (e) => {
+            const link = e.target.closest('.nav-link');
+            if (!link) return;
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+                setActiveNavLinks(link.getAttribute('data-section'));
+                closeMobileMenu();
             }
         });
-    });
-    
-    // Scroll events
-    window.addEventListener('scroll', handleScroll);
-    
-
-    
-    // Skills category filters
-    document.querySelectorAll('.category-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterSkills(btn.dataset.category);
-        });
-    });
-    
-    // Project category filters
-    document.querySelectorAll('.project-cat-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.project-cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterProjects(btn.dataset.category);
-        });
-    });
-}
-
-function toggleNav() {
-    if (elements.navMenu) {
-        const isOpen = elements.navMenu.classList.toggle('active');
-        if (elements.navToggle) {
-            elements.navToggle.setAttribute('aria-expanded', isOpen);
-        }
     }
-}
 
-function handleScroll() {
-    if (elements.navbar) {
-        if (window.scrollY > 100) {
-            elements.navbar.classList.add('scrolled');
-        } else {
-            elements.navbar.classList.remove('scrolled');
-        }
+    // Délégation filtres compétences
+    const skillsCatContainer = document.querySelector('.skills-categories');
+    if (skillsCatContainer) {
+        skillsCatContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.category-btn');
+            if (!btn) return;
+            activeSkillCategory = btn.dataset.category || 'all';
+            skillsCatContainer.querySelectorAll('.category-btn').forEach((b) => {
+                const isActive = b === btn;
+                b.classList.toggle('active', isActive);
+                b.setAttribute('aria-pressed', String(isActive));
+            });
+            applySkillFilter();
+        });
     }
-    
 
-    
-    updateActiveNavLink();
+    // Délégation filtres projets
+    const projectsCatContainer = document.querySelector('.projects-categories');
+    if (projectsCatContainer) {
+        projectsCatContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.project-cat-btn');
+            if (!btn) return;
+            activeProjectCategory = btn.dataset.category || 'all';
+            projectsCatContainer.querySelectorAll('.project-cat-btn').forEach((b) => {
+                const isActive = b === btn;
+                b.classList.toggle('active', isActive);
+                b.setAttribute('aria-pressed', String(isActive));
+            });
+            applyProjectFilter();
+        });
+    }
+
+    // Délégation ouverture étude de cas
+    if (elements.projectsGrid) {
+        elements.projectsGrid.addEventListener('click', (e) => {
+            const btn = e.target.closest('.open-project-btn');
+            if (!btn) return;
+            lastFocusedElement = btn;
+            openCaseStudyModal(btn.getAttribute('data-id'));
+        });
+    }
+
+    // Délégation accordéon FAQ (un seul listener)
+    if (elements.faqContainer) {
+        elements.faqContainer.addEventListener('click', (e) => {
+            const questionBtn = e.target.closest('.faq-question');
+            if (!questionBtn) return;
+            const faqItem = questionBtn.parentElement;
+            const wasOpen = faqItem.classList.contains('active');
+
+            elements.faqContainer.querySelectorAll('.faq-item').forEach((item) => {
+                item.classList.remove('active');
+                const q = item.querySelector('.faq-question');
+                if (q) q.setAttribute('aria-expanded', 'false');
+                const icon = item.querySelector('.faq-question i');
+                if (icon) icon.className = 'fas fa-plus';
+            });
+
+            if (!wasOpen) {
+                faqItem.classList.add('active');
+                questionBtn.setAttribute('aria-expanded', 'true');
+                const icon = questionBtn.querySelector('i');
+                if (icon) icon.className = 'fas fa-minus';
+            }
+        });
+    }
+
+    // Fermeture menu mobile avec Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && elements.navMenu && elements.navMenu.classList.contains('active')) {
+            closeMobileMenu();
+            if (elements.navToggle) elements.navToggle.focus();
+        }
+    });
 }
 
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section[id]');
-    const scrollY = window.scrollY;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
+function setupScrollEffects() {
+    const bar = document.getElementById('scroll-bar');
+    let ticking = false;
+
+    const update = () => {
+        ticking = false;
+        const scrollTop = window.scrollY;
+        if (elements.navbar) {
+            elements.navbar.classList.toggle('scrolled', scrollTop > 40);
+        }
+        if (bar) {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const percent = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+            bar.style.width = `${percent}%`;
+        }
+    };
+
+    window.addEventListener(
+        'scroll',
+        () => {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(update);
+            }
+        },
+        { passive: true }
+    );
+    update();
+}
+
+function setupActiveSectionObserver() {
+    const sections = document.querySelectorAll('main > section[id]');
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveNavLinks(entry.target.id);
                 }
             });
+        },
+        { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+}
+
+function setupRevealObserver() {
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) return;
+
+    revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    observeRevealItems();
+}
+
+function observeRevealItems() {
+    const targets = document.querySelectorAll('.service-card, .project-card, .skill-card, .highlight-item, .faq-item');
+    if (prefersReducedMotion || !revealObserver) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+        return;
+    }
+
+    targets.forEach((el) => {
+        if (!el.classList.contains('is-visible')) {
+            el.classList.add('reveal-item');
+            revealObserver.observe(el);
         }
     });
 }
 
-// ===== TYPING ANIMATION =====
+/* ==========================================================================
+   Typing & Compteurs (respect strict de prefers-reduced-motion)
+   ========================================================================== */
 function setupTypingAnimation() {
     if (!elements.typingText) return;
-    
-    if (typingTimeoutId) {
-        clearTimeout(typingTimeoutId);
-    }
-    
+    if (typingTimeoutId) clearTimeout(typingTimeoutId);
+
     const roles = portfolioData.profile.roles[currentLang];
-    let currentRoleIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    
-    function type() {
-        const currentRole = roles[currentRoleIndex];
-        
-        if (isDeleting) {
-            elements.typingText.textContent = currentRole.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-        } else {
-            elements.typingText.textContent = currentRole.substring(0, currentCharIndex + 1);
-            currentCharIndex++;
-        }
-        
-        let typeSpeed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && currentCharIndex === currentRole.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-            typeSpeed = 500;
-        }
-        
-        typingTimeoutId = setTimeout(type, typeSpeed);
+    if (prefersReducedMotion) {
+        elements.typingText.textContent = roles[0];
+        return;
     }
-    
-    type();
+
+    let roleIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    const tick = () => {
+        const currentRole = roles[roleIdx];
+        charIdx += isDeleting ? -1 : 1;
+        elements.typingText.textContent = currentRole.substring(0, charIdx);
+
+        let delay = isDeleting ? 45 : 85;
+        if (!isDeleting && charIdx === currentRole.length) {
+            delay = 2200;
+            isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+            isDeleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+            delay = 450;
+        }
+        typingTimeoutId = setTimeout(tick, delay);
+    };
+
+    tick();
 }
 
-// ===== COUNTER ANIMATION =====
 function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-count'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-        let started = false;
-        
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                counter.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target + '+';
-            }
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !started) {
-                    started = true;
-                    counter.textContent = '0';
-                    updateCounter();
-                    observer.unobserve(entry.target);
-                }
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    if (!counters.length) return;
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        counters.forEach((c) => {
+            c.textContent = `${c.getAttribute('data-count')}+`;
+        });
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-count'), 10);
+                if (Number.isNaN(target)) return;
+
+                const startTime = performance.now();
+                const duration = 1100;
+                const step = (now) => {
+                    const progress = Math.min(1, (now - startTime) / duration);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const val = Math.round(eased * target);
+                    el.textContent = progress < 1 ? String(val) : `${target}+`;
+                    if (progress < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+                observer.unobserve(el);
             });
-        }, { threshold: 0.3 });
-        
-        observer.observe(counter);
-    });
+        },
+        { threshold: 0.3 }
+    );
+
+    counters.forEach((c) => observer.observe(c));
 }
 
-// ===== GENERATE SKILLS =====
+/* ==========================================================================
+   Rendu des sections dynamiques (Compétences, Services, Projets, FAQ)
+   ========================================================================== */
 function generateSkills() {
     if (!elements.skillsGrid) return;
-    
     elements.skillsGrid.innerHTML = '';
-    
-    portfolioData.skills.forEach(skill => {
-        const name = typeof skill.name === 'string' ? skill.name : skill.name[currentLang];
-        const skillCard = document.createElement('div');
-        skillCard.className = `skill-card ${skill.category}`;
-        skillCard.innerHTML = `
+
+    const frag = document.createDocumentFragment();
+    portfolioData.skills.forEach((skill) => {
+        const card = document.createElement('div');
+        card.className = `skill-card ${skill.category}`;
+        card.innerHTML = `
             <div class="skill-header">
-                <span class="skill-name">${name}</span>
-                <span class="skill-percentage">${skill.level}%</span>
+                <span class="skill-name">${skill.name[currentLang]}</span>
             </div>
-            <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%"></div>
+            <div class="skill-bar" role="progressbar" aria-label="${skill.name[currentLang]}" aria-valuenow="${skill.level}" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-progress" style="width: ${skill.level}%"></div>
             </div>
         `;
-        elements.skillsGrid.appendChild(skillCard);
-        
-        setTimeout(() => {
-            const progressBar = skillCard.querySelector('.skill-progress');
-            if (progressBar) progressBar.style.width = `${skill.level}%`;
-        }, 100);
+        frag.appendChild(card);
+    });
+
+    elements.skillsGrid.appendChild(frag);
+    applySkillFilter();
+}
+
+function applySkillFilter() {
+    if (!elements.skillsGrid) return;
+    elements.skillsGrid.querySelectorAll('.skill-card').forEach((card) => {
+        const show = activeSkillCategory === 'all' || card.classList.contains(activeSkillCategory);
+        card.classList.toggle('is-hidden', !show);
     });
 }
 
-function filterSkills(category) {
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    skillCards.forEach(card => {
-        if (category === 'all' || card.classList.contains(category)) {
-            card.style.display = 'block';
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 10);
-        } else {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                card.style.display = 'none';
-            }, 300);
-        }
-    });
-}
-
-// ===== GENERATE SERVICES =====
 function generateServices() {
     if (!elements.servicesGrid) return;
-    
     elements.servicesGrid.innerHTML = '';
-    
-    portfolioData.services.forEach(service => {
-        const title = typeof service.title === 'string' ? service.title : service.title[currentLang];
-        const description = typeof service.description === 'string' ? service.description : service.description[currentLang];
-        const serviceCard = document.createElement('article');
-        serviceCard.className = 'service-card';
-        serviceCard.innerHTML = `
-            <div class="service-icon-wrap" style="--service-color: ${service.color}">
-                <i class="${service.icon}"></i>
+
+    const frag = document.createDocumentFragment();
+    portfolioData.services.forEach((service) => {
+        const card = document.createElement('article');
+        card.className = 'service-card';
+        card.innerHTML = `
+            <div class="service-card-top">
+                <div class="service-icon-wrap" aria-hidden="true">
+                    <i class="${service.icon}"></i>
+                </div>
             </div>
-            <h3 class="service-title">${title}</h3>
-            <p class="service-description">${description}</p>
+            <h3 class="service-title">${service.title[currentLang]}</h3>
+            <p class="service-description">${service.description[currentLang]}</p>
         `;
-        elements.servicesGrid.appendChild(serviceCard);
+        frag.appendChild(card);
     });
+    elements.servicesGrid.appendChild(frag);
 }
 
-// ===== GENERATE PROJECTS / REALIZATIONS =====
 function generateProjects() {
     if (!elements.projectsGrid) return;
-    
     elements.projectsGrid.innerHTML = '';
-    
-    portfolioData.projects.forEach(project => {
-        const title = project.title[currentLang];
-        const summary = project.summary[currentLang];
-        const btnText = currentLang === 'fr' ? "Voir l'étude de cas" : "View Case Study";
-        
+
+    const btnText = currentLang === 'fr' ? "Lire l'étude de cas" : 'Read case study';
+    const frag = document.createDocumentFragment();
+
+    portfolioData.projects.forEach((project) => {
         const card = document.createElement('article');
         card.className = `project-card ${project.category}`;
         card.setAttribute('data-id', project.id);
-        
         card.innerHTML = `
-            <div class="project-header" style="--project-color: ${project.color}">
-                <div class="project-icon-badge">
-                    <i class="${project.icon}"></i>
+            <div>
+                <div class="project-header">
+                    <div class="project-icon-badge" aria-hidden="true">
+                        <i class="${project.icon}"></i>
+                    </div>
+                    <span class="project-metric-badge">${project.metric[currentLang]}</span>
                 </div>
-                <span class="project-metric-badge">${project.metric}</span>
-            </div>
-            <div class="project-body">
-                <h3 class="project-title">${title}</h3>
-                <p class="project-summary">${summary}</p>
+                <h3 class="project-title">${project.title[currentLang]}</h3>
+                <p class="project-summary">${project.summary[currentLang]}</p>
                 <div class="project-tools">
-                    ${project.tools.map(t => `<span class="project-tool-tag">${t}</span>`).join('')}
+                    ${project.tools.map((t) => `<span class="project-tool-tag">${t}</span>`).join('')}
                 </div>
             </div>
             <div class="project-footer">
-                <button class="btn btn-outline btn-sm open-project-btn" data-id="${project.id}">
+                <button type="button" class="btn btn-outline btn-sm open-project-btn" data-id="${project.id}">
                     <span>${btnText}</span>
-                    <i class="fas fa-arrow-right"></i>
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
                 </button>
             </div>
         `;
-        
-        elements.projectsGrid.appendChild(card);
+        frag.appendChild(card);
     });
-    
-    // Attach click listeners to open modal
-    document.querySelectorAll('.open-project-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const projId = btn.getAttribute('data-id');
-            openCaseStudyModal(projId);
-        });
+
+    elements.projectsGrid.appendChild(frag);
+    applyProjectFilter();
+}
+
+function applyProjectFilter() {
+    if (!elements.projectsGrid) return;
+    elements.projectsGrid.querySelectorAll('.project-card').forEach((card) => {
+        const show = activeProjectCategory === 'all' || card.classList.contains(activeProjectCategory);
+        card.classList.toggle('is-hidden', !show);
     });
 }
 
-function filterProjects(category) {
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach(card => {
-        if (category === 'all' || card.classList.contains(category)) {
-            card.style.display = 'flex';
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 10);
-        } else {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-                card.style.display = 'none';
-            }, 300);
-        }
+function generateFaq() {
+    if (!elements.faqContainer) return;
+    elements.faqContainer.innerHTML = '';
+
+    const frag = document.createDocumentFragment();
+    portfolioData.faq.forEach((item) => {
+        const faqItem = document.createElement('div');
+        faqItem.className = 'faq-item';
+        faqItem.innerHTML = `
+            <button type="button" class="faq-question" aria-expanded="false">
+                <span>${item.question[currentLang]}</span>
+                <i class="fas fa-plus" aria-hidden="true"></i>
+            </button>
+            <div class="faq-answer">
+                <p>${item.answer[currentLang]}</p>
+            </div>
+        `;
+        frag.appendChild(faqItem);
     });
+    elements.faqContainer.appendChild(frag);
 }
+
+/* ==========================================================================
+   Modale Étude de Cas + Deep-linking (?project=...)
+   ========================================================================== */
+let closeProjectModalFn = null;
 
 function setupProjectModal() {
     const modal = document.getElementById('project-modal');
     const closeBtn = document.getElementById('project-modal-close');
     const overlay = document.getElementById('project-modal-overlay');
-
     if (!modal) return;
 
     const closeModal = () => {
@@ -1693,25 +1731,31 @@ function setupProjectModal() {
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
 
-        // Clean URL searchParams if project parameter exists
         try {
             const url = new URL(window.location.href);
             if (url.searchParams.has('project')) {
                 url.searchParams.delete('project');
-                const cleanUrl = url.pathname + (url.search ? url.search : '') + (url.hash || '');
-                window.history.pushState({}, '', cleanUrl);
+                const query = url.searchParams.toString();
+                window.history.replaceState({}, '', url.pathname + (query ? `?${query}` : '') + (url.hash || ''));
             }
-        } catch (e) {
-            console.warn('Could not update history state on modal close', e);
+        } catch (_) {}
+
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+            lastFocusedElement.focus();
+            lastFocusedElement = null;
         }
     };
 
+    closeProjectModalFn = closeModal;
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (overlay) overlay.addEventListener('click', closeModal);
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') {
             closeModal();
+        } else {
+            handleModalFocusTrap(e, modal);
         }
     });
 }
@@ -1721,77 +1765,59 @@ function openCaseStudyModal(projectId, updateUrl = true) {
     const badge = document.getElementById('project-modal-badge');
     const titleEl = document.getElementById('project-modal-title');
     const bodyEl = document.getElementById('project-modal-body');
-
     if (!modal || !bodyEl) return;
 
-    const proj = portfolioData.projects.find(p => p.id === projectId);
+    const proj = portfolioData.projects.find((p) => p.id === projectId);
     if (!proj) return;
 
-    const title = proj.title[currentLang];
-    const challenge = proj.challenge[currentLang];
-    const solution = proj.solution[currentLang];
-    const results = proj.results[currentLang];
-
-    const challengeLabel = currentLang === 'fr' ? 'Le Challenge Client' : 'Client Challenge';
-    const solutionLabel = currentLang === 'fr' ? 'La Solution Sur-Mesure' : 'Custom Solution';
-    const resultsLabel = currentLang === 'fr' ? 'Résultats Obtenus' : 'Key Results';
-    const toolsLabel = currentLang === 'fr' ? 'Outils & Technologies' : 'Tools & Tech';
-    const ctaBtnText = currentLang === 'fr' ? 'Discuter d\'un projet similaire' : 'Discuss a Similar Project';
-    const copyLinkText = currentLang === 'fr' ? 'Copier le lien direct' : 'Copy direct link';
-
+    const isFr = currentLang === 'fr';
     const categoryNames = {
-        compliance: { fr: 'Conformité légale associative', en: 'Association Legal Compliance' },
+        compliance: { fr: 'Conformité associative', en: 'NGO Legal Compliance' },
         writing: { fr: 'Rédaction & Contenu', en: 'Writing & Content' },
         automation: { fr: 'Automatisation n8n', en: 'n8n Automation' },
         webdev: { fr: 'Développement web', en: 'Web Development' }
     };
 
-    const catName = categoryNames[proj.category] ? categoryNames[proj.category][currentLang] : proj.category;
-
-    if (badge) {
-        badge.textContent = catName;
-        badge.style.background = proj.color;
-    }
-
-    if (titleEl) titleEl.textContent = title;
+    if (badge) badge.textContent = (categoryNames[proj.category] && categoryNames[proj.category][currentLang]) || proj.category;
+    if (titleEl) titleEl.textContent = proj.title[currentLang];
 
     bodyEl.innerHTML = `
-        <div class="case-study-metric" style="border-left: 4px solid ${proj.color};">
-            <span class="metric-value">${proj.metric}</span>
-        </div>
-        
-        <div class="case-study-section">
-            <h4><i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i> ${challengeLabel}</h4>
-            <p>${challenge}</p>
+        <div class="case-study-metric">
+            <span class="metric-value">${proj.metric[currentLang]}</span>
         </div>
 
         <div class="case-study-section">
-            <h4><i class="fas fa-lightbulb" style="color: ${proj.color};"></i> ${solutionLabel}</h4>
-            <p>${solution}</p>
+            <h4><i class="fas fa-flag" aria-hidden="true"></i> ${isFr ? 'Contexte & Enjeu' : 'Context & Challenge'}</h4>
+            <p>${proj.challenge[currentLang]}</p>
         </div>
 
         <div class="case-study-section">
-            <h4><i class="fas fa-chart-line" style="color: #10b981;"></i> ${resultsLabel}</h4>
+            <h4><i class="fas fa-compass" aria-hidden="true"></i> ${isFr ? 'Approche mise en œuvre' : 'Approach'}</h4>
+            <p>${proj.solution[currentLang]}</p>
+        </div>
+
+        <div class="case-study-section">
+            <h4><i class="fas fa-chart-line" aria-hidden="true"></i> ${isFr ? 'Résultats clés' : 'Key Outcomes'}</h4>
             <ul class="case-study-results">
-                ${results.map(r => `<li><i class="fas fa-check-circle"></i> <span>${r}</span></li>`).join('')}
+                ${proj.results[currentLang].map((r) => `<li><i class="fas fa-check" aria-hidden="true"></i><span>${r}</span></li>`).join('')}
             </ul>
         </div>
 
         <div class="case-study-section">
-            <h4><i class="fas fa-tools"></i> ${toolsLabel}</h4>
+            <h4><i class="fas fa-wrench" aria-hidden="true"></i> ${isFr ? 'Outils & Méthodes' : 'Tools & Methods'}</h4>
             <div class="project-tools">
-                ${proj.tools.map(t => `<span class="project-tool-tag">${t}</span>`).join('')}
+                ${proj.tools.map((t) => `<span class="project-tool-tag">${t}</span>`).join('')}
             </div>
         </div>
 
-        <div class="case-study-cta" style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="case-study-cta">
             <a href="#contact" class="btn btn-primary btn-full close-modal-navigate">
-                <i class="fab fa-whatsapp"></i>
-                <span>${ctaBtnText}</span>
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                <span>${isFr ? 'Discuter d\'un projet similaire' : 'Discuss a similar project'}</span>
             </a>
-            <button type="button" class="btn btn-outline btn-full copy-project-link-btn" style="justify-content: center; gap: 0.5rem; border-color: var(--primary-color); color: var(--primary-color);">
-                <i class="fas fa-link"></i>
-                <span>${copyLinkText}</span>
+            <button type="button" class="btn btn-outline btn-full copy-project-link-btn">
+                <i class="fas fa-link" aria-hidden="true"></i>
+                <span>${isFr ? 'Copier le lien direct' : 'Copy direct link'}</span>
             </button>
         </div>
     `;
@@ -1800,252 +1826,102 @@ function openCaseStudyModal(projectId, updateUrl = true) {
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
-    // Update URL parameter cleanly for deep linking
+    const closeBtn = document.getElementById('project-modal-close');
+    if (closeBtn) closeBtn.focus();
+
     if (updateUrl) {
         try {
             const url = new URL(window.location.href);
             url.searchParams.set('project', proj.id);
-            window.history.pushState({ project: proj.id }, '', url.pathname + url.search + '#projects');
-        } catch (e) {
-            console.warn('Could not update history state on modal open', e);
-        }
+            window.history.pushState({ project: proj.id }, '', `${url.pathname}?${url.searchParams.toString()}#projects`);
+        } catch (_) {}
     }
 
-    // Click CTA to close modal & scroll to contact
     const ctaLink = bodyEl.querySelector('.close-modal-navigate');
     if (ctaLink) {
-        ctaLink.addEventListener('click', () => {
-            modal.classList.remove('active');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
+        ctaLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            lastFocusedElement = null;
+            if (closeProjectModalFn) closeProjectModalFn();
+            const contactSec = document.getElementById('contact');
+            if (contactSec) contactSec.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
         });
     }
 
-    // Copy project link button
     const copyBtn = bodyEl.querySelector('.copy-project-link-btn');
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
-            const shareUrl = `${window.location.origin}${window.location.pathname}?project=${proj.id}#projects`;
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                const btnSpan = copyBtn.querySelector('span');
-                const originalText = btnSpan.textContent;
-                btnSpan.textContent = currentLang === 'fr' ? '✓ Lien copié !' : '✓ Link copied!';
-                setTimeout(() => {
-                    btnSpan.textContent = originalText;
-                }, 2500);
-            }).catch(err => {
-                console.error('Copy failed', err);
-            });
+            const langSuffix = currentLang === 'en' ? '&lang=en' : '';
+            const shareUrl = `${window.location.origin}${window.location.pathname}?project=${encodeURIComponent(proj.id)}${langSuffix}#projects`;
+            const btnSpan = copyBtn.querySelector('span');
+            const originalText = btnSpan ? btnSpan.textContent : '';
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    if (btnSpan) {
+                        btnSpan.textContent = isFr ? 'Lien copié' : 'Link copied';
+                        setTimeout(() => { btnSpan.textContent = originalText; }, 2200);
+                    }
+                }).catch(() => {});
+            }
         });
     }
 }
 
 function checkDeepLinkProject() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const projId = urlParams.get('project');
-    if (projId && portfolioData.projects.some(p => p.id === projId)) {
-        setTimeout(() => {
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-                projectsSection.scrollIntoView({ behavior: 'smooth' });
-            }
-            openCaseStudyModal(projId, false);
-        }, 450);
+    const projId = new URLSearchParams(window.location.search).get('project');
+    if (projId && portfolioData.projects.some((p) => p.id === projId)) {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) projectsSection.scrollIntoView({ behavior: 'auto' });
+        openCaseStudyModal(projId, false);
     }
 }
 
-
-
-// ===== FAQ ACCORDION GENERATION =====
-function generateFaq() {
-    if (!elements.faqContainer) return;
-    
-    elements.faqContainer.innerHTML = '';
-    
-    portfolioData.faq.forEach(item => {
-        const question = item.question[currentLang];
-        const answer = item.answer[currentLang];
-        
-        const faqItem = document.createElement('div');
-        faqItem.className = 'faq-item';
-        faqItem.innerHTML = `
-            <button class="faq-question" aria-expanded="false">
-                <span>${question}</span>
-                <i class="fas fa-plus"></i>
-            </button>
-            <div class="faq-answer">
-                <p>${answer}</p>
-            </div>
-        `;
-        elements.faqContainer.appendChild(faqItem);
-    });
-}
-
-function setupFaqAccordion() {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', () => {
-            const faqItem = question.parentElement;
-            const isOpen = faqItem.classList.contains('active');
-            
-            document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-                const icon = item.querySelector('.faq-question i');
-                if (icon) icon.className = 'fas fa-plus';
-            });
-            
-            if (!isOpen) {
-                faqItem.classList.add('active');
-                question.setAttribute('aria-expanded', 'true');
-                const icon = question.querySelector('i');
-                if (icon) icon.className = 'fas fa-minus';
-            }
-        });
-    });
-}
-
-// ===== SCROLL ANIMATIONS =====
-function setupScrollAnimations() {
-    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-    
-    try {
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.utils.toArray('.section').forEach(section => {
-            gsap.from(section, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 80%',
-                    end: 'top 50%',
-                    scrub: 1
-                }
-            });
-        });
-
-        // Section Header Animations (Title, Subtitle, Description)
-        gsap.utils.toArray('.section-header').forEach(header => {
-            gsap.from(header.children, {
-                scrollTrigger: {
-                    trigger: header,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                },
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: 'power3.out'
-            });
-        });
-    } catch (e) {
-        console.warn('⚠️ GSAP scroll animations failed to initialize:', e);
-    }
-}
-
-// ===== STAGGERED FADE-IN ANIMATIONS =====
-function setupStaggerAnimations() {
-    const animatedElements = document.querySelectorAll('.skill-card, .service-card, .project-card, .highlight-item, .contact-item, .faq-item');
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                const siblings = entry.target.parentElement.children;
-                const siblingIndex = Array.from(siblings).indexOf(entry.target);
-                
-                setTimeout(() => {
-                    entry.target.classList.add('animate-in');
-                }, siblingIndex * 80);
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Add animation stylesheet class
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `.animate-in { opacity: 1 !important; transform: translateY(0) !important; }`;
-document.head.appendChild(styleSheet);
-
-// ===== HERO PARALLAX =====
-function setupHeroParallax() {
-    const hero = document.querySelector('.hero');
-    const particles = document.querySelector('.hero-particles');
-    const heroImage = document.querySelector('.hero-image-container');
-    
-    if (!hero || !particles) return;
-    
-    hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        
-        particles.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
-        
-        if (heroImage) {
-            heroImage.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
-        }
-    });
-    
-    hero.addEventListener('mouseleave', () => {
-        particles.style.transform = 'translate(0, 0)';
-        particles.style.transition = 'transform 0.5s ease';
-        if (heroImage) {
-            heroImage.style.transform = 'translate(0, 0)';
-            heroImage.style.transition = 'transform 0.5s ease';
-        }
-    });
-    
-    hero.addEventListener('mouseenter', () => {
-        particles.style.transition = 'none';
-        if (heroImage) heroImage.style.transition = 'none';
-    });
-}
-
-// ===== THEME TOGGLE =====
+/* ==========================================================================
+   Thème Sombre / Clair
+   ========================================================================== */
 function setupThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const html = document.documentElement;
-    
     if (!themeToggle || !themeIcon) return;
-    
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-    html.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(themeIcon, savedTheme);
-    
+
+    const applyTheme = (theme) => {
+        html.setAttribute('data-theme', theme);
+        themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        const themeMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeMeta) themeMeta.setAttribute('content', theme === 'dark' ? '#0b0e14' : '#f7f5f0');
+    };
+
+    applyTheme(localStorage.getItem('portfolio-theme') || 'dark');
+
     themeToggle.addEventListener('click', () => {
-        const current = html.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        
-        html.setAttribute('data-theme', next);
+        const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         localStorage.setItem('portfolio-theme', next);
-        updateThemeIcon(themeIcon, next);
+        applyTheme(next);
     });
 }
 
-function updateThemeIcon(icon, theme) {
-    if (theme === 'dark') {
-        icon.className = 'fas fa-sun';
-    } else {
-        icon.className = 'fas fa-moon';
-    }
+/* ==========================================================================
+   Helper Ouverture WhatsApp (encodage complet + zéro double redirection)
+   ========================================================================== */
+function buildWhatsAppUrl(plainText) {
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(plainText)}`;
 }
 
+function openExternalSafely(url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+}
 
-
-// ===== CALENDLY BOOKING MODAL SYSTEM =====
+/* ==========================================================================
+   Modale Réservation 15 min
+   ========================================================================== */
 function setupBookingModal() {
     const openBtn = document.getElementById('open-booking-btn');
     const modal = document.getElementById('booking-modal');
@@ -2053,290 +1929,285 @@ function setupBookingModal() {
     const overlay = document.getElementById('booking-modal-overlay');
     const bookingForm = document.getElementById('booking-form');
     const dateInput = document.getElementById('book-date');
-
+    const bookingMessage = document.getElementById('booking-message');
     if (!modal) return;
 
-    // Set tomorrow's date as min date
     if (dateInput) {
-        const today = new Date();
-        const tomorrow = new Date(today);
+        const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
         dateInput.min = tomorrow.toISOString().split('T')[0];
     }
 
-    if (openBtn) {
-        openBtn.addEventListener('click', () => {
-            modal.classList.add('active');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden'; // Stop page scrolling when modal open
-        });
-    }
+    const openModal = () => {
+        lastFocusedElement = document.activeElement;
+        if (bookingMessage) {
+            bookingMessage.className = 'form-message';
+            bookingMessage.textContent = '';
+        }
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const firstInput = document.getElementById('book-name');
+        if (firstInput) firstInput.focus();
+    };
 
     const closeModal = () => {
         modal.classList.remove('active');
         modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = ''; // Re-enable page scrolling
+        document.body.style.overflow = '';
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+            lastFocusedElement.focus();
+            lastFocusedElement = null;
+        }
     };
 
+    if (openBtn) openBtn.addEventListener('click', openModal);
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
     if (overlay) overlay.addEventListener('click', closeModal);
 
-    // Escape key press to close modal
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
+        if (!modal.classList.contains('active')) return;
+        if (e.key === 'Escape') {
             closeModal();
+        } else {
+            handleModalFocusTrap(e, modal);
         }
     });
 
-    // Handle form submission to WhatsApp
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            const fields = [
+                document.getElementById('book-name'),
+                document.getElementById('book-phone'),
+                document.getElementById('book-date'),
+                document.getElementById('book-time')
+            ];
 
-            const name = document.getElementById('book-name').value.trim();
-            const phone = document.getElementById('book-phone').value.trim();
-            const dateVal = document.getElementById('book-date').value;
-            const timeVal = document.getElementById('book-time').value;
-
-            if (!name || !phone || !dateVal || !timeVal) {
-                return;
-            }
-
-            let title, nameLabel, phoneLabel, dateLabel, timeLabel, followUp;
-            if (currentLang === 'fr') {
-                title = "*Nouveau rendez-vous planifié*";
-                nameLabel = "*Nom :*";
-                phoneLabel = "*Téléphone :*";
-                dateLabel = "*Date :*";
-                timeLabel = "*Heure :*";
-                followUp = "Je souhaite planifier cet appel avec vous.";
-            } else {
-                title = "*New Scheduled Call*";
-                nameLabel = "*Name:*";
-                phoneLabel = "*Phone:*";
-                dateLabel = "*Date:*";
-                timeLabel = "*Time:*";
-                followUp = "I would like to schedule this call with you.";
-            }
-
-            // Format date to DD/MM/YYYY
-            let formattedDate = dateVal;
-            try {
-                const parts = dateVal.split('-');
-                if (parts.length === 3) {
-                    formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+            for (const field of fields) {
+                if (field && !field.checkValidity()) {
+                    field.reportValidity();
+                    field.focus();
+                    return;
                 }
-            } catch (err) {
-                console.error("Error formatting date", err);
             }
 
-            const text = `${title}%0A%0A` +
-                         `${nameLabel} ${encodeURIComponent(name)}%0A` +
-                         `${phoneLabel} ${encodeURIComponent(phone)}%0A` +
-                         `${dateLabel} ${encodeURIComponent(formattedDate)}%0A` +
-                         `${timeLabel} ${encodeURIComponent(timeVal)}%0A%0A` +
-                         `${encodeURIComponent(followUp)}`;
+            const name = fields[0].value.trim();
+            const phone = fields[1].value.trim();
+            const dateVal = fields[2].value;
+            const timeVal = fields[3].value;
 
-            const waNumber = '22967576050';
-            const waURL = `https://wa.me/${waNumber}?text=${text}`;
+            const parts = dateVal.split('-');
+            const formattedDate = parts.length === 3 ? `${parts[2]}/${parts[1]}/${parts[0]}` : dateVal;
 
-            // Open WhatsApp link with fallback
-            let popupOpened = false;
-            try {
-                const win = window.open(waURL, '_blank', 'noopener,noreferrer');
-                if (win && !win.closed && typeof win.closed !== 'undefined') {
-                    popupOpened = true;
-                }
-            } catch (err) {
-                console.warn('Booking popup blocked');
+            const isFr = currentLang === 'fr';
+            const plainText = isFr
+                ? `*Demande d'appel (15 min)*\n\n*Nom :* ${name}\n*Téléphone :* ${phone}\n*Date souhaitée :* ${formattedDate}\n*Créneau :* ${timeVal}\n\nBonjour, je souhaite confirmer ce créneau d'échange.`
+                : `*15-Min Call Request*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Preferred date:* ${formattedDate}\n*Time slot:* ${timeVal}\n\nHello, I would like to confirm this call slot.`;
+
+            const waURL = buildWhatsAppUrl(plainText);
+            openExternalSafely(waURL);
+
+            if (bookingMessage) {
+                bookingMessage.className = 'form-message success';
+                bookingMessage.innerHTML = isFr
+                    ? `Votre demande est prête sur WhatsApp. <a href="${waURL}" target="_blank" rel="noopener noreferrer">Ouvrir WhatsApp si l'onglet ne s'est pas lancé</a>.`
+                    : `Your request is ready on WhatsApp. <a href="${waURL}" target="_blank" rel="noopener noreferrer">Open WhatsApp if the tab did not launch</a>.`;
             }
-            if (!popupOpened) {
-                window.location.href = waURL;
-            }
 
-            // Reset form and close modal
             bookingForm.reset();
-            closeModal();
         });
     }
 }
 
-// ===== MULTI-STEP PROJECT INTAKE FORM WIZARD =====
+/* ==========================================================================
+   Formulaire de contact multi-étapes (Netlify Forms + fallback mailto + WA)
+   ========================================================================== */
 function setupIntakeFormWizard() {
-    const form = document.getElementById('contact-form');
+    const form = elements.contactForm;
     if (!form) return;
 
     const panels = form.querySelectorAll('.form-step-panel');
     const steps = document.querySelectorAll('.progress-step');
     const fill = document.getElementById('progress-bar-fill');
-    
+    const formMessage = document.getElementById('form-message');
+    const emailSubmitBtn = document.getElementById('btn-submit-email');
+    const waBtn = document.getElementById('btn-submit-whatsapp');
+
     let currentStep = 1;
 
-    // Next step clicks
-    form.querySelectorAll('.next-step').forEach(btn => {
+    const validatePanel = (stepNum) => {
+        const panel = form.querySelector(`.form-step-panel[data-step="${stepNum}"]`);
+        if (!panel) return true;
+        const requiredFields = panel.querySelectorAll('input[required], select[required], textarea[required]');
+        for (const field of requiredFields) {
+            if (!field.checkValidity()) {
+                field.reportValidity();
+                field.focus();
+                return false;
+            }
+        }
+        return true;
+    };
+
+    const goToStep = (step) => {
+        if (step < 1 || step > panels.length) return;
+        panels.forEach((p) => p.classList.remove('active'));
+        const targetPanel = form.querySelector(`.form-step-panel[data-step="${step}"]`);
+        if (targetPanel) targetPanel.classList.add('active');
+
+        steps.forEach((s) => {
+            const sNum = parseInt(s.getAttribute('data-step'), 10);
+            s.classList.toggle('active', sNum === step);
+            s.classList.toggle('complete', sNum < step);
+            if (sNum === step) {
+                s.setAttribute('aria-current', 'step');
+            } else {
+                s.removeAttribute('aria-current');
+            }
+        });
+
+        if (fill) {
+            const percent = ((step - 1) / (panels.length - 1)) * 76;
+            fill.style.width = `${percent}%`;
+        }
+        currentStep = step;
+    };
+
+    form.querySelectorAll('.next-step').forEach((btn) => {
         btn.addEventListener('click', () => {
-            // Check validation of inputs on current step
-            const currentPanel = form.querySelector(`.form-step-panel[data-step="${currentStep}"]`);
-            const inputs = currentPanel.querySelectorAll('input[required], select[required], textarea[required]');
-            let isValid = true;
-
-            inputs.forEach(input => {
-                if (!input.checkValidity()) {
-                    input.reportValidity();
-                    isValid = false;
-                }
-            });
-
-            if (isValid) {
+            if (validatePanel(currentStep)) {
                 goToStep(currentStep + 1);
             }
         });
     });
 
-    // Previous step clicks
-    form.querySelectorAll('.prev-step').forEach(btn => {
+    form.querySelectorAll('.prev-step').forEach((btn) => {
         btn.addEventListener('click', () => {
             goToStep(currentStep - 1);
         });
     });
 
-    function goToStep(step) {
-        if (step < 1 || step > panels.length) return;
-
-        // Hide active panel, show target panel
-        panels.forEach(p => p.classList.remove('active'));
-        const targetPanel = form.querySelector(`.form-step-panel[data-step="${step}"]`);
-        if (targetPanel) targetPanel.classList.add('active');
-
-        // Update progress indicators
-        steps.forEach(s => {
-            const sNum = parseInt(s.getAttribute('data-step'));
-            s.classList.remove('active', 'complete');
-            if (sNum === step) {
-                s.classList.add('active');
-            } else if (sNum < step) {
-                s.classList.add('complete');
-            }
-        });
-
-        // Update fill width (0% on step 1, 50% on step 2, 100% on step 3)
-        const percent = ((step - 1) / (panels.length - 1)) * 80; // keep within 80% boundary
-        if (fill) fill.style.width = `${percent}%`;
-
-        currentStep = step;
-    }
-
-    // Submit form (Email default via submit button, WhatsApp via WA button)
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        submitFormData('email');
-    });
-
-    const waBtn = document.getElementById('btn-submit-whatsapp');
-    if (waBtn) {
-        waBtn.addEventListener('click', function() {
-            // Validate required inputs on step 3 first
-            const currentPanel = form.querySelector('.form-step-panel[data-step="3"]');
-            const inputs = currentPanel ? currentPanel.querySelectorAll('textarea[required], input[required]') : [];
-            let isValid = true;
-            inputs.forEach(input => {
-                if (!input.checkValidity()) {
-                    input.reportValidity();
-                    isValid = false;
-                }
-            });
-            if (isValid) {
-                submitFormData('whatsapp');
-            }
-        });
-    }
-
-    function submitFormData(targetType) {
-        const formMessage = document.getElementById('form-message');
-        
-        // Get form data
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone')?.value.trim() || (currentLang === 'fr' ? 'Non fourni' : 'Not provided');
-        const service = document.getElementById('project-service').value;
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
-
-        if (targetType === 'email') {
-            const mailSubject = encodeURIComponent(`[Brief Website] ${subject} - ${name}`);
-            const mailBody = encodeURIComponent(
-                `Bonjour Mouhamadou Halissou,\n\n` +
-                `Voici mon brief de projet envoyé depuis votre site web :\n\n` +
-                `• Nom: ${name}\n` +
-                `• Email: ${email}\n` +
-                `• Téléphone: ${phone}\n` +
-                `• Service: ${service}\n` +
-                `• Sujet: ${subject}\n\n` +
-                `• Message / Brief:\n${message}\n\n` +
-                `Cordialement,\n${name}`
-            );
-            const mailtoURL = `mailto:halissous1491@gmail.com?subject=${mailSubject}&body=${mailBody}`;
-            window.location.href = mailtoURL;
-
-            if (formMessage) {
-                formMessage.className = 'form-message success';
-                formMessage.style.display = 'block';
-                formMessage.innerHTML = currentLang === 'fr' 
-                    ? '✓ Votre message a été préparé dans votre application d\'email ! Merci.'
-                    : '✓ Your message has been prepared in your email application! Thank you.';
-            }
-        } else {
-            // WhatsApp route
-            const whatsappTitle = currentLang === 'fr' ? '*Nouveau brief de projet depuis le site*' : '*New Project Brief from website*';
-            const labelName = currentLang === 'fr' ? '*Nom:*' : '*Name:*';
-            const labelEmail = currentLang === 'fr' ? '*Email:*' : '*Email:*';
-            const labelPhone = currentLang === 'fr' ? '*Téléphone:*' : '*Phone:*';
-            const labelService = currentLang === 'fr' ? '*Service demandé:*' : '*Requested Service:*';
-            const labelSubject = currentLang === 'fr' ? '*Sujet:*' : '*Subject:*';
-            const labelMessage = currentLang === 'fr' ? '*Message / Brief:*' : '*Message / Brief:*';
-
-            const whatsappMessage = `${whatsappTitle}%0A%0A` +
-                `${labelName} ${encodeURIComponent(name)}%0A` +
-                `${labelEmail} ${encodeURIComponent(email)}%0A` +
-                `${labelPhone} ${encodeURIComponent(phone)}%0A` +
-                `${labelService} ${encodeURIComponent(service)}%0A` +
-                `${labelSubject} ${encodeURIComponent(subject)}%0A%0A` +
-                `${labelMessage}%0A${encodeURIComponent(message)}`;
-
-            const whatsappNumber = '22967576050';
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-
-            let popupOpened = false;
-            try {
-                const win = window.open(whatsappURL, '_blank', 'noopener,noreferrer');
-                if (win && !win.closed && typeof win.closed !== 'undefined') {
-                    popupOpened = true;
-                }
-            } catch (e) {
-                console.warn('Popup blocked, using fallback navigation');
-            }
-
-            if (!popupOpened) {
-                window.location.href = whatsappURL;
-            }
-
-            if (formMessage) {
-                formMessage.className = 'form-message success';
-                formMessage.style.display = 'block';
-                formMessage.innerHTML = currentLang === 'fr' 
-                    ? '✓ Redirection vers WhatsApp...' 
-                    : '✓ Redirecting to WhatsApp...';
+    // Touche Entrée sur les étapes 1 et 2 -> avance à l'étape suivante sans bloquer
+    form.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && currentStep < panels.length) {
+            e.preventDefault();
+            if (validatePanel(currentStep)) {
+                goToStep(currentStep + 1);
             }
         }
+    });
 
-        setTimeout(() => {
-            form.reset();
-            goToStep(1);
-        }, 3000);
+    const getFormPayload = () => ({
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        phone: (document.getElementById('phone') && document.getElementById('phone').value.trim()) || (currentLang === 'fr' ? 'Non fourni' : 'Not provided'),
+        service: document.getElementById('project-service').value,
+        subject: document.getElementById('subject').value.trim(),
+        message: document.getElementById('message').value.trim()
+    });
+
+    const buildMailtoUrl = (data) => {
+        const subject = encodeURIComponent(`[Brief Portfolio] ${data.subject} — ${data.name}`);
+        const body = encodeURIComponent(
+            `Bonjour Mouhamadou Halissou,\n\n` +
+            `Nom : ${data.name}\n` +
+            `Email : ${data.email}\n` +
+            `Téléphone : ${data.phone}\n` +
+            `Service : ${data.service}\n` +
+            `Sujet : ${data.subject}\n\n` +
+            `Message :\n${data.message}\n`
+        );
+        return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    };
+
+    // Soumission principale : Netlify Forms (AJAX) avec fallback mailto fiable
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (currentStep < panels.length) {
+            if (validatePanel(currentStep)) goToStep(currentStep + 1);
+            return;
+        }
+        if (!validatePanel(1)) { goToStep(1); return; }
+        if (!validatePanel(2)) { goToStep(2); return; }
+        if (!validatePanel(3)) return;
+
+        const data = getFormPayload();
+        const isFr = currentLang === 'fr';
+        const mailtoURL = buildMailtoUrl(data);
+
+        if (emailSubmitBtn) emailSubmitBtn.disabled = true;
+
+        try {
+            const encoded = new URLSearchParams({
+                'form-name': 'contact',
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                service: data.service,
+                subject: data.subject,
+                message: data.message
+            }).toString();
+
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: encoded
+            });
+
+            if (response.ok) {
+                if (formMessage) {
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = isFr
+                        ? 'Votre brief a bien été transmis. Je vous réponds sous 24 heures ouvrées.'
+                        : 'Your brief has been sent. I will get back to you within 24 business hours.';
+                }
+                form.reset();
+                goToStep(1);
+            } else {
+                throw new Error('Netlify form endpoint unavailable');
+            }
+        } catch (_) {
+            // Fallback local / hors-ligne : préserve les données saisies et propose mailto direct
+            if (formMessage) {
+                formMessage.className = 'form-message error';
+                formMessage.innerHTML = isFr
+                    ? `Envoi direct indisponible pour le moment. <a href="${mailtoURL}">Ouvrir votre messagerie avec le brief pré-rempli</a> ou utilisez le bouton WhatsApp.`
+                    : `Direct submission is currently unavailable. <a href="${mailtoURL}">Open your email client with the pre-filled brief</a> or use the WhatsApp button.`;
+            }
+        } finally {
+            if (emailSubmitBtn) emailSubmitBtn.disabled = false;
+        }
+    });
+
+    if (waBtn) {
+        waBtn.addEventListener('click', () => {
+            if (!validatePanel(1)) { goToStep(1); return; }
+            if (!validatePanel(2)) { goToStep(2); return; }
+            if (!validatePanel(3)) return;
+
+            const data = getFormPayload();
+            const isFr = currentLang === 'fr';
+            const plainText = isFr
+                ? `*Nouveau brief projet*\n\n*Nom :* ${data.name}\n*Email :* ${data.email}\n*Téléphone :* ${data.phone}\n*Service :* ${data.service}\n*Sujet :* ${data.subject}\n\n*Message :*\n${data.message}`
+                : `*New Project Brief*\n\n*Name:* ${data.name}\n*Email:* ${data.email}\n*Phone:* ${data.phone}\n*Service:* ${data.service}\n*Subject:* ${data.subject}\n\n*Message:*\n${data.message}`;
+
+            const waURL = buildWhatsAppUrl(plainText);
+            openExternalSafely(waURL);
+
+            if (formMessage) {
+                formMessage.className = 'form-message success';
+                formMessage.innerHTML = isFr
+                    ? `Votre brief a été préparé pour WhatsApp. <a href="${waURL}" target="_blank" rel="noopener noreferrer">Ouvrir WhatsApp manuellement</a> si nécessaire.`
+                    : `Your brief is ready for WhatsApp. <a href="${waURL}" target="_blank" rel="noopener noreferrer">Open WhatsApp manually</a> if needed.`;
+            }
+        });
     }
 }
 
-// ===== AI ASSISTANT CHATBOT =====
+/* ==========================================================================
+   Assistant Virtuel (Regex à frontières de mots, sans faux positifs)
+   ========================================================================== */
 function setupChatbotAssistant() {
     const trigger = document.getElementById('chatbot-trigger');
     const windowEl = document.getElementById('chatbot-window');
@@ -2345,212 +2216,125 @@ function setupChatbotAssistant() {
     const input = document.getElementById('chatbot-input');
     const messagesContainer = document.getElementById('chatbot-messages');
     const suggestionsContainer = document.getElementById('chatbot-suggestions');
-
     if (!trigger || !windowEl) return;
 
-    // Open/Close toggle
-    trigger.addEventListener('click', () => {
-        const isOpen = windowEl.classList.toggle('active');
-        windowEl.setAttribute('aria-hidden', !isOpen);
-        
-        // Hide badge on open
-        const badge = trigger.querySelector('.chat-badge');
-        if (badge) badge.style.display = 'none';
-
-        if (isOpen) {
-            input.focus();
+    const setChatOpen = (open) => {
+        windowEl.classList.toggle('active', open);
+        windowEl.setAttribute('aria-hidden', String(!open));
+        trigger.setAttribute('aria-expanded', String(open));
+        if (open) {
+            const badge = trigger.querySelector('.chat-badge');
+            if (badge) badge.classList.add('is-hidden');
+            if (input) input.focus();
             scrollToBottom();
         }
+    };
+
+    trigger.addEventListener('click', () => {
+        setChatOpen(!windowEl.classList.contains('active'));
     });
 
     if (closeBtn) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            windowEl.classList.remove('active');
-            windowEl.setAttribute('aria-hidden', 'true');
+            setChatOpen(false);
+            trigger.focus();
         });
     }
 
-    // Keyword chatbot responses
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && windowEl.classList.contains('active')) {
+            setChatOpen(false);
+            trigger.focus();
+        }
+    });
+
     const botResponses = {
         fr: {
-            rates: "Mes tarifs dépendent de la nature du projet. En rédaction SEO, c'est environ 0,06 €/mot. Pour les automatisations n8n ou Make, à partir de 150 € par workflow. Pour les applications No-Code, cela démarre à 400 €. N'hésitez pas à me contacter via le formulaire ou sur WhatsApp pour obtenir un devis personnalisé !",
-            avail: "Je suis disponible pour de nouvelles opportunités de projet en freelance à partir de cette semaine. Quel est votre projet ?",
-            ai: "Je vous accompagne dans l'intégration d'outils d'IA (GPT-4, Claude, Gemini) : chatbots de support client personnalisés, génération de documents PDF automatisée et formations en Prompt Engineering.",
-            n8n: "n8n est une solution d'automatisation surpuissante. Elle permet de connecter vos outils (Notion, Gmail, CRM, WhatsApp) pour éradiquer les tâches répétitives. J'ai réalisé de nombreux workflows de synchronisation et de relance automatique.",
-            hello: "Bonjour ! Ravi de vous accueillir sur mon site. Posez-moi toutes vos questions sur mes compétences, mes tarifs ou ma disponibilité !",
-            default: "Merci pour votre question ! Pour un brief détaillé ou une demande spécifique, vous pouvez m'envoyer un message via mon formulaire multi-étapes ou directement sur WhatsApp. Discutons de votre projet !"
+            rates: "Les tarifs dépendent du périmètre : en rédaction SEO à partir d'environ 0,06 €/mot, pour une automatisation n8n ou Make à partir de 150 € par scénario, et dès 400 € pour une application No-Code. Un devis précis est établi après un court brief.",
+            avail: "Je suis disponible pour de nouvelles missions en rédaction, conformité associative ou automatisation. Réponse garantie sous 24 heures ouvrées via le formulaire ou WhatsApp.",
+            ai: "J'intègre Claude, GPT-4 et Gemini de façon concrète : assistants documentaires, génération automatisée de PDF et structuration éditoriale — avec relecture et validation humaine systématiques.",
+            n8n: "Avec n8n ou Make, je connecte vos outils existants (Notion, Gmail, CRM, WhatsApp) pour automatiser relances, notifications et rapports sans ressaisie manuelle.",
+            compliance: "J'accompagne les associations, ONG et fondations au Bénin pour leur mise en conformité statutaire (Loi 2025-19) : révision des statuts, règlement intérieur et montage du dossier administratif.",
+            contact: "Vous pouvez envoyer votre brief via le formulaire en 3 étapes sur cette page, planifier un appel de 15 min ou m'écrire par email à halissous1491@gmail.com.",
+            hello: "Bonjour. Sur quel sujet souhaitez-vous en savoir plus : rédaction, conformité ONG, automatisation n8n, tarifs ou disponibilité ?",
+            default: "Merci pour votre message. Pour un besoin précis ou un devis, utilisez le formulaire de brief ci-dessus ou contactez-moi directement sur WhatsApp."
         },
         en: {
-            rates: "My rates vary based on your project. For copywriting, it is about €0.06/word. n8n/Make automation starts at €150 per flow. Custom No-Code apps start at €400. Feel free to contact me via the form or on WhatsApp to get a custom quote!",
-            avail: "I am currently open to new freelance project collaborations starting this week. Tell me more about your requirements!",
-            ai: "I integrate advanced AI models (GPT-4, Claude, Gemini) into business workflows. This includes custom customer support chatbots, automated document generation, and advanced Prompt Engineering training.",
-            n8n: "n8n is a powerful workflow automation tool that connects Notion, Gmail, CRM, WhatsApp, etc. I use it to build robust, automated synchronization and notification systems that run 24/7.",
-            hello: "Hello! Nice to meet you. Ask me anything about my experience, rates, or availability!",
-            default: "Thanks for asking! For custom projects or quotes, feel free to contact me directly on WhatsApp. Let's make your project a success!"
+            rates: "Indicative rates depend on scope: SEO writing around €0.06/word, n8n or Make workflows starting from €150 per scenario, and custom No-Code apps starting at €400. A tailored quote follows a short brief.",
+            avail: "I am open to new freelance engagements in writing, NGO compliance, and automation, with replies within 24 business hours via the form or WhatsApp.",
+            ai: "I integrate Claude, GPT-4, and Gemini into practical workflows—document assistants, automated PDF reports, and editorial prep—always paired with full human review.",
+            n8n: "Using n8n or Make, I connect your existing tools (Notion, Gmail, CRM, WhatsApp) to automate follow-ups, alerts, and recurring reporting.",
+            compliance: "I support associations, NGOs, and foundations in Benin with statutory alignment under Law 2025-19: bylaws revision, internal regulations, and administrative filing dossiers.",
+            contact: "You can submit a short brief using the 3-step form on this page, book a 15-minute call, or email halissous1491@gmail.com directly.",
+            hello: "Hello. What would you like to know about—writing, NGO compliance, n8n automation, indicative rates, or availability?",
+            default: "Thanks for your question. For a tailored quote or specific project, use the contact brief form on this page or message me directly on WhatsApp."
         }
     };
 
-    // Handle suggestion button clicks
+    const normalize = (str) =>
+        str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+
+    const matchIntent = (rawText) => {
+        const text = normalize(rawText);
+        if (/\b(tarifs?|prix|couts?|devis|budget|combien|rates?|pricing|price|cost|quote)\b/.test(text)) return 'rates';
+        if (/\b(dispo|disponible|disponibilite|libre|calendrier|creneau|rdv|appel|availab\w*|schedule|book\w*|call)\b/.test(text)) return 'avail';
+        if (/\b(n8n|make|zapier|automatis\w*|automat\w*|workflows?|notion)\b/.test(text)) return 'n8n';
+        if (/\b(loi|2025-19|statuts?|ong|ngo|association|fondation|conformite|compliance|bylaws?)\b/.test(text)) return 'compliance';
+        if (/\b(ia|ai|gpt|gpt-4|claude|gemini|prompt|chatbot|rag|llm|intelligence artificielle|artificial intelligence)\b/.test(text)) return 'ai';
+        if (/\b(contact\w*|email|mail|whatsapp|telephone|phone|joindre)\b/.test(text)) return 'contact';
+        if (/\b(bonjour|bonsoir|salut|hello|hi|hey|coucou)\b/.test(text)) return 'hello';
+        return 'default';
+    };
+
     if (suggestionsContainer) {
         suggestionsContainer.addEventListener('click', (e) => {
             const btn = e.target.closest('.suggestion-btn');
             if (!btn) return;
-
-            const qKey = btn.getAttribute('data-question');
-            const userMsgText = btn.textContent;
-            
-            // Send user message
-            appendMessage(userMsgText, 'user');
-            
-            // Trigger bot response
-            triggerBotResponse(qKey);
+            appendMessage(btn.textContent, 'user');
+            triggerBotResponse(btn.getAttribute('data-question'));
         });
     }
 
-    // Submit input message
     if (inputForm) {
         inputForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const text = input.value.trim();
             if (!text) return;
-
             appendMessage(text, 'user');
             input.value = '';
-
-            // Analyze input for keyword matching
-            let matchedKey = 'default';
-            const lower = text.toLowerCase();
-
-            if (lower.includes('tarif') || lower.includes('prix') || lower.includes('chiffre') || lower.includes('combien') || lower.includes('cout') || lower.includes('coût') || lower.includes('rate') || lower.includes('price') || lower.includes('budget') || lower.includes('argent') || lower.includes('pay')) {
-                matchedKey = 'rates';
-            } else if (lower.includes('dispo') || lower.includes('libre') || lower.includes('temps') || lower.includes('disponib') || lower.includes('avail') || lower.includes('calendar') || lower.includes('calendrier')) {
-                matchedKey = 'avail';
-            } else if (lower.includes('ia') || lower.includes('ai') || lower.includes('gpt') || lower.includes('chat') || lower.includes('claude') || lower.includes('gemini') || lower.includes('prompt') || lower.includes('intellig') || lower.includes('robot')) {
-                matchedKey = 'ai';
-            } else if (lower.includes('n8n') || lower.includes('make') || lower.includes('zapier') || lower.includes('automat') || lower.includes('workflow') || lower.includes('flux')) {
-                matchedKey = 'n8n';
-            } else if (lower.includes('bonjour') || lower.includes('salut') || lower.includes('hello') || lower.includes('hi') || lower.includes('hey') || lower.includes('coucou')) {
-                matchedKey = 'hello';
-            }
-
-            triggerBotResponse(matchedKey);
+            triggerBotResponse(matchIntent(text));
         });
     }
 
     function appendMessage(text, sender) {
         const msgDiv = document.createElement('div');
         msgDiv.className = `chat-message ${sender}`;
-        
-        // Remplacement basique des astérisques markdown par des balises strong
-        const formattedText = text.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
-        
-        msgDiv.innerHTML = `
-            <div class="message-content">
-                <p>${formattedText}</p>
-            </div>
-        `;
+        const safeText = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        msgDiv.innerHTML = `<div class="message-content"><p>${safeText}</p></div>`;
         messagesContainer.appendChild(msgDiv);
         scrollToBottom();
-        return msgDiv;
     }
 
     function triggerBotResponse(key) {
-        // Show typing indicator
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chat-message bot';
-        typingDiv.innerHTML = `
-            <div class="message-content">
-                <div class="typing-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        `;
+        typingDiv.innerHTML = `<div class="message-content"><div class="typing-dots" aria-label="..."><span ></span><span></span><span></span></div></div>`;
         messagesContainer.appendChild(typingDiv);
         scrollToBottom();
 
-        // Delay response to simulate thinking
+        const delay = prefersReducedMotion ? 150 : 650;
         setTimeout(() => {
-            // Remove typing indicator
             typingDiv.remove();
-
-            // Append bot response
-            const responseText = botResponses[currentLang][key] || botResponses[currentLang]['default'];
-            appendMessage(responseText, 'bot');
-        }, 1200);
+            const reply = (botResponses[currentLang] && botResponses[currentLang][key]) || botResponses[currentLang].default;
+            appendMessage(reply, 'bot');
+        }, delay);
     }
 
     function scrollToBottom() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 }
-
-// ===== UTILITY FUNCTIONS =====
-const yearEl = document.getElementById('current-year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-// ===== MAGNETIC BUTTONS =====
-function setupMagneticButtons() {
-    if (typeof gsap === 'undefined') return;
-    
-    const magneticBtns = document.querySelectorAll('.btn, .social-link, .chatbot-trigger');
-    
-    magneticBtns.forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            gsap.to(btn, {
-                x: x * 0.35,
-                y: y * 0.35,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-        });
-        
-        btn.addEventListener('mouseleave', () => {
-            gsap.to(btn, {
-                x: 0,
-                y: 0,
-                duration: 0.5,
-                ease: 'elastic.out(1, 0.3)'
-            });
-        });
-    });
-}
-
-// ===== SPOTLIGHT HOVER EFFECTS =====
-function setupSpotlightHover() {
-    const cards = document.querySelectorAll('.skill-card, .service-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    });
-}
-
-// ===== SCROLL PROGRESS BAR =====
-function setupScrollProgressBar() {
-    const bar = document.getElementById('scroll-bar');
-    if (!bar) return;
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (docHeight <= 0) return;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        bar.style.width = `${scrollPercent}%`;
-    }, { passive: true });
-}
-
-console.log('📱 Portfolio by Mouhamadou Halissou SEIDOU IBRAHIM');
-console.log('🌐 https://www.halissoumsi.com');

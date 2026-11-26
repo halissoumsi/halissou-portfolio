@@ -1,23 +1,32 @@
 {
-  "name": "Mouhamadou Halissou SEIDOU IBRAHIM",
-  "short_name": "Halissou Portfolio",
-  "description": "Expert en Rédaction, Intelligence Artificielle et Gestion de Projet",
-  "start_url": "./",
+  "id": "/",
+  "name": "Mouhamadou Halissou — Portfolio",
+  "short_name": "Halissou",
+  "description": "Rédaction stratégique, automatisation IA et gestion de projet.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#06100e",
-  "theme_color": "#06100e",
-  "orientation": "portrait",
+  "background_color": "#0b0e14",
+  "theme_color": "#0b0e14",
   "icons": [
     {
-      "src": "images/profile-about.webp",
+      "src": "images/halissou.webp",
       "sizes": "192x192",
       "type": "image/webp",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "images/profile-about.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "images/halissou.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/og-image.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
