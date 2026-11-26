@@ -1,8 +1,8 @@
-const CACHE_NAME = 'halissou-v11';
+const CACHE_NAME = 'halissou-v12';
 const ASSETS = [
   './',
   'index.html',
-  'style.css',
+  'style.css?v=12',
   'app.js',
   '404.html',
   '404.js',

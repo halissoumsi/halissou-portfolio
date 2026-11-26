@@ -36,16 +36,16 @@
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
 
-# CSS & JS : cache court avec revalidation
+# CSS & JS : revalidation ETag immédiate à chaque déploiement
 [[headers]]
   for = "/*.css"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/*.js"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Le Service Worker ne doit jamais être mis en cache durablement (placé après /*.js pour priorité)
 [[headers]]
