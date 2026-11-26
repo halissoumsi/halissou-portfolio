@@ -1,4 +1,4 @@
-const CACHE_NAME = 'halissou-v10';
+const CACHE_NAME = 'halissou-v11';
 const ASSETS = [
   './',
   'index.html',
@@ -12,6 +12,11 @@ const ASSETS = [
   'fonts/font_6.woff2',
   'fonts/font_37.woff2',
   'fonts/font_38.woff2',
+  'fonts/fontawesome/css/fontawesome.min.css',
+  'fonts/fontawesome/css/solid.min.css',
+  'fonts/fontawesome/css/brands.min.css',
+  'fonts/fontawesome/webfonts/fa-solid-900.woff2',
+  'fonts/fontawesome/webfonts/fa-brands-400.woff2',
   'images/halissou.webp',
   'images/halissou.png',
   'images/apple-touch-icon.png',
@@ -49,9 +54,7 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
-  const isSameOrigin = url.origin === self.location.origin;
-  const isTrustedCDN = url.hostname === 'cdnjs.cloudflare.com';
-  if (!isSameOrigin && !isTrustedCDN) return;
+  if (url.origin !== self.location.origin) return;
 
   // Network-First pour les navigations HTML afin d'éviter l'affichage d'anciennes versions après déploiement
   if (request.mode === 'navigate') {
