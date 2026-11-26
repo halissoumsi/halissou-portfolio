@@ -25,12 +25,6 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' https://plausible.io; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' https://plausible.io; frame-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
 
-# Le Service Worker ne doit jamais être mis en cache durablement
-[[headers]]
-  for = "/sw.js"
-  [headers.values]
-    Cache-Control = "no-cache, no-store, must-revalidate"
-
 # HTML & Manifest : revalidation systématique pour propager rapidement les mises à jour
 [[headers]]
   for = "/*.html"
@@ -52,6 +46,12 @@
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=3600, must-revalidate"
+
+# Le Service Worker ne doit jamais être mis en cache durablement (placé après /*.js pour priorité)
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
 
 # Polices & Images : cache longue durée immuable
 [[headers]]
